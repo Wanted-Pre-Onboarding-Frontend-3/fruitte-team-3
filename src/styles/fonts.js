@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
 export default {
   H1: css`
@@ -12,7 +12,7 @@ export default {
     font-weight: bold;
     font-size: 24px;
     line-height: 34px;
-    letter-spacing: -0.01em; 
+    letter-spacing: -0.01em;
   `,
 
   H3: css`
@@ -20,7 +20,7 @@ export default {
     font-size: 20px;
     line-height: 26px;
     letter-spacing: -0.01em;
-  `, 
+  `,
   Body1: css`
     font-size: 16px;
     line-height: 20px;
