@@ -21,11 +21,41 @@
     "eslintConfig": {
         "extends": [
             "react-app",
-            "react-app/jest"
+            "react-app/jest",
+            "eslint-config-prettier",
+            "prettier"
         ],
         "plugins": [
             "eslint-plugin-import"
-        ]
+        ],
+        "rules": {
+            "import/order": [
+                "error",
+                {
+                    "groups": [
+                        "builtin",
+                        "external",
+                        [
+                            "parent",
+                            "sibling"
+                        ],
+                        "index"
+                    ],
+                    "pathGroups": [
+                        {
+                            "pattern": "angular",
+                            "group": "external",
+                            "position": "before"
+                        }
+                    ],
+                    "alphabetize": {
+                        "order": "asc",
+                        "caseInsensitive": true
+                    },
+                    "newlines-between": "always"
+                }
+            ]
+        }
     },
     "browserslist": {
         "production": [
@@ -43,7 +73,6 @@
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-import": "^2.26.0",
         "husky": "^8.0.1",
-        "lint-staged": "^13.0.3",
         "prettier": "^2.7.1"
     }
 }
