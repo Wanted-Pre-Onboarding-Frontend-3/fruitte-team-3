@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import interview_list from '../../mock/interview_list.json';
+import { InterviewGrid } from './BottomSection';
 import { Heading1, Paragraph, Section, Text } from './Common';
 import InterviewItem from './InterviewItem';
 import Symbol from './Symbol';
@@ -54,7 +55,7 @@ export default function BottomSection() {
   );
 }
 
-const InterviewGrid = styled.ul`
+export const InterviewGrid = styled.ul`
   display: grid;
   align-self: center;
   gap: 8px;
