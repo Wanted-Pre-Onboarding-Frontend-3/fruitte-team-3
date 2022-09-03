@@ -7,7 +7,6 @@ export default {
     line-height: 38px;
     letter-spacing: -0.01em;
   `,
-
   H2: css`
     font-weight: bold;
     font-size: 24px;
