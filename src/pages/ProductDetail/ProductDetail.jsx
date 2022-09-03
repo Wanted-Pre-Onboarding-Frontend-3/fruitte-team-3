@@ -1,9 +1,12 @@
+import { useProductDetailTabBar } from '@components/ProductDetail/useProductDetailTabBar';
 import { useEffect, useState } from 'react';
 import { Link, useMatch } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { DropDown } from '../../components/BaseComponent/DropDown';
 import Slide from '../../components/BaseComponent/slider';
+import { TabBar } from '../../components/BaseComponent/TabBar';
+import { useTypedTabBar } from '../../components/BaseComponent/TabBar/hook';
 import { Text } from '../../components/ProductList/Common';
 import Tags from '../../components/ProductList/Tags';
 import { colors } from '../../styles/colors';
@@ -13,6 +16,13 @@ import { useQuery } from '../../utils/fetch.util';
 function ProductDetail(props) {
   const [dropdownValue, setDropdownValue] = useState('');
   const [addOption, setAddOption] = useState({});
+  const {
+    scrollRef,
+    isShowTab,
+    componentProps: productDetailTabBarProps,
+  } = useProductDetailTabBar({ reviewCount: 0 });
+  const { componentProps } = useTypedTabBar(productDetailTabBarProps);
+
   const matchId = useMatch(`/fruitstore/:id`);
   const id = matchId.params.id;
 
@@ -33,115 +43,120 @@ function ProductDetail(props) {
   const haveTag = !!value?.tags.length;
 
   return (
-    <DivWrap>
-      <SlideContainer>
-        <BreadCrumbsWrap>
-          <FirstItem>
-            <Link to={'/'}>
-              <Text color={colors.gray4} fontWeight={600} fontSize={16}>
-                Home
+    <>
+      <DivWrap>
+        <SlideContainer>
+          <BreadCrumbsWrap>
+            <FirstItem>
+              <Link to={'/'}>
+                <Text color={colors.gray4} fontWeight={600} fontSize={16}>
+                  Home
+                </Text>
+              </Link>
+            </FirstItem>
+            <IconWrap>></IconWrap>
+            <SecondItem>
+              <Link to={'/fruitstore'}>
+                <Text color={colors.gray2} fontWeight={600} fontSize={16}>
+                  FRUITTE STORE
+                </Text>
+              </Link>
+            </SecondItem>
+          </BreadCrumbsWrap>
+          <SlideWrap>
+            <Slide sliderItem={value?.images} loopTime={5} boxSize={500} />
+          </SlideWrap>
+        </SlideContainer>
+
+        <ContentWrap>
+          <TitleWrap>
+            <Text color={colors.gray2} fontWeight={600} fontSize={22}>
+              {value?.name}
+            </Text>
+          </TitleWrap>
+          <TagWrap>
+            {haveTag &&
+              value?.tags.map((tag, index) => {
+                return (
+                  <Tags key={index} tag={tag}>
+                    {tag}
+                  </Tags>
+                );
+              })}
+          </TagWrap>
+          <PriceWrap>
+            <Text color={colors.spring} fontWeight={600} fontSize={16}>
+              {value?.prices[0].discountedPrice.toLocaleString()}원
+            </Text>
+            <Text
+              color={colors.gray4}
+              fontSize={14}
+              textDecoration={'line-through'}
+              ml={8}
+            >
+              {value?.prices[0].originalPrice.toLocaleString()}원
+            </Text>
+          </PriceWrap>
+          <InfoWrap>
+            <ContentInfoWrap>
+              <Text color={colors.gray3} fontSize={16} fontWeight={400}>
+                {value?.description.content}
               </Text>
-            </Link>
-          </FirstItem>
-          <IconWrap>></IconWrap>
-          <SecondItem>
-            <Link to={'/fruitstore'}>
-              <Text color={colors.gray2} fontWeight={600} fontSize={16}>
-                FRUITTE STORE
+            </ContentInfoWrap>
+            <OriginInfoWrap>
+              <Text color={colors.gray1} fontSize={12} fontWeight={700} mr={8}>
+                원산지
               </Text>
-            </Link>
-          </SecondItem>
-        </BreadCrumbsWrap>
-        <SlideWrap>
-          <Slide sliderItem={value?.images} loopTime={5} boxSize={500} />
-        </SlideWrap>
-      </SlideContainer>
+              <Text color={colors.gray3} fontSize={12}>
+                {value?.description.origin}
+              </Text>
+            </OriginInfoWrap>
+            <DeliveryTypeWrap>
+              <Text color={colors.gray1} fontSize={12} fontWeight={700} mr={8}>
+                배송 방법
+              </Text>
+              <Text color={colors.gray3} fontSize={12}>
+                {value?.description.deliveryType.join(', ')}
+              </Text>
+            </DeliveryTypeWrap>
 
-      <ContentWrap>
-        <TitleWrap>
-          <Text color={colors.gray2} fontWeight={600} fontSize={22}>
-            {value?.name}
-          </Text>
-        </TitleWrap>
-        <TagWrap>
-          {haveTag &&
-            value?.tags.map((tag, index) => {
-              return (
-                <Tags key={index} tag={tag}>
-                  {tag}
-                </Tags>
-              );
-            })}
-        </TagWrap>
-        <PriceWrap>
-          <Text color={colors.spring} fontWeight={600} fontSize={16}>
-            {value?.prices[0].discountedPrice.toLocaleString()}원
-          </Text>
-          <Text
-            color={colors.gray4}
-            fontSize={14}
-            textDecoration={'line-through'}
-            ml={8}
-          >
-            {value?.prices[0].originalPrice.toLocaleString()}원
-          </Text>
-        </PriceWrap>
-        <InfoWrap>
-          <ContentInfoWrap>
-            <Text color={colors.gray3} fontSize={16} fontWeight={400}>
-              {value?.description.content}
-            </Text>
-          </ContentInfoWrap>
-          <OriginInfoWrap>
-            <Text color={colors.gray1} fontSize={12} fontWeight={700} mr={8}>
-              원산지
-            </Text>
-            <Text color={colors.gray3} fontSize={12}>
-              {value?.description.origin}
-            </Text>
-          </OriginInfoWrap>
-          <DeliveryTypeWrap>
-            <Text color={colors.gray1} fontSize={12} fontWeight={700} mr={8}>
-              배송 방법
-            </Text>
-            <Text color={colors.gray3} fontSize={12}>
-              {value?.description.deliveryType.join(', ')}
-            </Text>
-          </DeliveryTypeWrap>
+            <DeliveryFeeWrap>
+              <Text color={colors.gray1} fontSize={12} fontWeight={700} mr={8}>
+                배송비
+              </Text>
+              <Text color={colors.gray3} fontSize={12}>
+                {Number(value?.description.deliveryFee).toLocaleString()}원
+              </Text>
+            </DeliveryFeeWrap>
 
-          <DeliveryFeeWrap>
-            <Text color={colors.gray1} fontSize={12} fontWeight={700} mr={8}>
-              배송비
-            </Text>
-            <Text color={colors.gray3} fontSize={12}>
-              {Number(value?.description.deliveryFee).toLocaleString()}원
-            </Text>
-          </DeliveryFeeWrap>
-
-          <DeliveryInfo>
-            <Text color={colors.gray1} fontSize={12} fontWeight={700} mr={8}>
-              배송비
-            </Text>
-            <Text color={colors.gray3} fontSize={12}>
-              {Number(value?.description.overFreeDeliveryFee).toLocaleString()}
-              원 이상 구매시 무료배송
-            </Text>
-          </DeliveryInfo>
-          <DropDownWrap>
-            <DropDown
-              options={value?.description.itemOption}
-              setValue={setDropdownValue}
-              value={dropdownValue ?? ''}
-            />
-          </DropDownWrap>
-          <ButtonWrap>
-            <PurchaseButton>구매하기</PurchaseButton>
-            <AddCartButton>장바구니</AddCartButton>
-            <AddLikeButton>찜</AddLikeButton>
-          </ButtonWrap>
-        </InfoWrap>
-      </ContentWrap>
-    </DivWrap>
+            <DeliveryInfo>
+              <Text color={colors.gray1} fontSize={12} fontWeight={700} mr={8}>
+                배송비
+              </Text>
+              <Text color={colors.gray3} fontSize={12}>
+                {Number(
+                  value?.description.overFreeDeliveryFee,
+                ).toLocaleString()}
+                원 이상 구매시 무료배송
+              </Text>
+            </DeliveryInfo>
+            <DropDownWrap>
+              <DropDown
+                options={value?.description.itemOption}
+                setValue={setDropdownValue}
+                value={dropdownValue ?? ''}
+              />
+            </DropDownWrap>
+            <ButtonWrap>
+              <PurchaseButton>구매하기</PurchaseButton>
+              <AddCartButton>장바구니</AddCartButton>
+              <AddLikeButton>찜</AddLikeButton>
+            </ButtonWrap>
+          </InfoWrap>
+        </ContentWrap>
+      </DivWrap>
+      <TabBarWrap {...componentProps} />
+    </>
   );
 }
 
@@ -272,5 +287,18 @@ const AddLikeButton = styled(PlainButton)`
   border-radius: 24px;
   flex: 1;
   border: 1px solid ${colors.gray3};
+`;
+
+export const TabBarWrap = styled(TabBar).attrs((props) => ({
+  ...props,
+}))`
+  position: sticky;
+  top: 70px;
+  padding: 0 20px;
+  z-index: 2;
+
+  ${media.mobile} {
+    top: 50px;
+  }
 `;
 export default ProductDetail;
