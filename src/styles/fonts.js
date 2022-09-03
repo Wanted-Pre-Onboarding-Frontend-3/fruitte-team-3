@@ -1,13 +1,12 @@
 import { css } from 'styled-components';
 
-export default {
+export const fonts = {
   H1: css`
     font-weight: bold;
     font-size: 28px;
     line-height: 38px;
     letter-spacing: -0.01em;
   `,
-
   H2: css`
     font-weight: bold;
     font-size: 24px;

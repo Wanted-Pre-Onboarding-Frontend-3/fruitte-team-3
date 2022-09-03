@@ -1,5 +1,4 @@
-/* eslint-disable import/no-anonymous-default-export */
-export default {
+export const colors = {
   black: '#000000',
   white: '#FFFFFF',
   red: '#fe5356',

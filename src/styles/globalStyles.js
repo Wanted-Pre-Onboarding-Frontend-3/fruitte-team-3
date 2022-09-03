@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-import colors from './colors';
+import { colors } from './colors';
 
 const GlobalStyles = createGlobalStyle`
 ${reset}
