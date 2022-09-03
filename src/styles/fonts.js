@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-export default {
+export const fonts = {
   H1: css`
     font-weight: bold;
     font-size: 28px;

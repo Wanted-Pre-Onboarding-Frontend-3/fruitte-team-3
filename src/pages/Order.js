@@ -6,8 +6,8 @@ import styled from 'styled-components';
 
 import OrderList from '../components/Order/OrderList';
 import SearchAddress from '../components/Order/SearchAddress';
-import colors from '../styles/colors';
-import fonts from '../styles/fonts';
+import { colors } from '../styles/colors';
+import { fonts } from '../styles/fonts';
 import { orderState } from '../utils/orderStore';
 
 const Order = () => {

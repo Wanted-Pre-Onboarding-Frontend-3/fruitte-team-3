@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import ProductList from './pages/ProductList/ProductList';
-import ProductManage from './pages/productManage';
 import OrderComplete from './components/Order/OrderComplete';
 import Order from './pages/Order';
+import ProductList from './pages/ProductList/ProductList';
+import ProductManage from './pages/productManage';
 
 function App() {
   return (

@@ -8,7 +8,7 @@ import Pagination from '../../components/ProductList/Pagination';
 import ProductItem from '../../components/ProductList/ProductItem';
 import TopSection from '../../components/ProductList/TopSection';
 import product_list from '../../mock/product_list.json';
-import colors from '../../styles/colors';
+import { colors } from '../../styles/colors';
 import { useDefaultSearchParams } from '../../utils/hooks';
 
 export default function ProductList() {

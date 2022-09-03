@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import colors from '../../styles/colors';
+import { colors } from '../../styles/colors';
 import { Flex, Image, Text } from './Common';
 import Tags from './Tags';
 
