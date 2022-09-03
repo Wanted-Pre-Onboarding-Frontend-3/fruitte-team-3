@@ -1,0 +1,26 @@
+[
+  {
+    "id": "915b2232-d9e4-4767-9800-85e0c646b476",
+    "is_external": true,
+    "url": "http://www.naver.com",
+    "image": "http://dummyimage.com/198x100.png/5fa2dd/ffffff"
+  },
+  {
+    "id": "63a8f917-f13c-4ec8-a619-2dd2c644e26d",
+    "is_external": true,
+    "url": "http://www.naver.com",
+    "image": "http://dummyimage.com/193x100.png/dddddd/000000"
+  },
+  {
+    "id": "a3db114f-1643-475a-ae8b-3f3e80f9f2c4",
+    "is_external": true,
+    "url": "http://www.naver.com",
+    "image": "http://dummyimage.com/218x100.png/cc0000/ffffff"
+  },
+  {
+    "id": "ec70d2f9-e646-40de-b6a8-6d4dc85ffbee",
+    "is_external": false,
+    "url": "/",
+    "image": "http://dummyimage.com/223x100.png/cc0000/ffffff"
+  }
+]
