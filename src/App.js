@@ -21,7 +21,7 @@ function App() {
           <Route path="/fruitstore/*" element={<ProductDetail />} />
           <Route path="/admin/product-manage" element={<ProductManage />} />
           <Route path="/admin/product-register" element={<ProductRegister />} />
-          <Route path="/order" element={<Order />} />
+          <Route path="/order/*" element={<Order />} />
           <Route path="/order-complete" element={<OrderComplete />} />
           <Route path="/mypage/order/:id" element={<OrderHistoryDetail />} />
           <Route path="/mypage/order" element={<OrderHistory />} />
