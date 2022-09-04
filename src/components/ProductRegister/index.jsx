@@ -1,35 +1,30 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
+import {
+  itemListState,
+  newItemInfoState,
+  itemCodeState,
+} from '../../utils/registerStore';
 import Gnb from '../Gnb';
 import RegisterFrame from './RegisterFrame';
 import RegisterImgButton from './RegisterImgButton';
 import RegisterInput from './RegisterInput';
 import RegisterOption from './RegisterOption';
 
-const RegisterItem = () => {
-  const [newItemInfo, setNewItemInfo] = useState({});
+const ProductRegister = () => {
+  const [itemCode, setItemCode] = useRecoilState(itemCodeState);
+  const newItemInfo = useRecoilValue(newItemInfoState);
+  const [itemList, setItemList] = useRecoilState(itemListState);
 
-  // TODO: 기존 상품데이터값 받아오기
-  const [itemList, setItemList] = useState([
-    { name: '상품1', price: '333원' },
-    { name: '상품2', price: '444원' },
-  ]);
-
-  const [itemCode, setItemCode] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setItemCode(Math.floor(new Date().getTime() + Math.random()));
   }, []);
-
-  const handleInputChange = (key, value) => {
-    setNewItemInfo({
-      ...newItemInfo,
-      id: itemCode,
-      [key]: value,
-    });
-  };
 
   const submitRequest = async () => {
     try {
@@ -37,23 +32,24 @@ const RegisterItem = () => {
         newItemInfo,
       });
 
-      // TODO: 성공시 메인 화면으로 이동
+      const { status } = response;
+      if (status === 200) {
+        navigate('/fruitstore');
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleAddNewItem = () => {
-    // TODO: 필수항목 충족시 등록 가능하도록
-    // if (window.confirm('상품을 등록하시겠습니까?')) {
-    //   submitRequest();
-    // }
+    if (window.confirm('상품을 등록하시겠습니까?')) {
+      submitRequest();
+    }
 
-    setItemList([newItemInfo, ...itemList]);
+    // 임의로 기존 데이터에 상품 추가
+    setItemList([...itemList, newItemInfo]);
     console.log(itemList);
   };
-
-  // TODO: 상품정보 제공고시 넣어야 하는지 판단
 
   return (
     <>
@@ -65,16 +61,11 @@ const RegisterItem = () => {
         <RegisterFrame title="상품코드">{itemCode}</RegisterFrame>
 
         <RegisterFrame title="상품명 *">
-          <RegisterInput
-            setInputData={handleInputChange}
-            placeholder={'상품명을 입력해주세요'}
-            name={'name'}
-          />
+          <RegisterInput placeholder={'상품명을 입력해주세요'} name={'name'} />
         </RegisterFrame>
 
         <RegisterFrame title="상품소개 *">
           <RegisterInput
-            setInputData={handleInputChange}
             placeholder={'상품소개를 입력해주세요'}
             name={'desc'}
           />
@@ -86,7 +77,6 @@ const RegisterItem = () => {
 
         <RegisterFrame title="정가 *">
           <RegisterInput
-            setInputData={handleInputChange}
             placeholder={'정가를 입력해주세요'}
             name={'origin_price'}
           />
@@ -95,7 +85,6 @@ const RegisterItem = () => {
 
         <RegisterFrame title="할인가">
           <RegisterInput
-            setInputData={handleInputChange}
             placeholder={'할인가를 입력해주세요'}
             name={'sale_price'}
           />
@@ -103,12 +92,11 @@ const RegisterItem = () => {
         </RegisterFrame>
 
         <RegisterFrame title="상품옵션 *">
-          <RegisterOption setInputData={handleInputChange} />
+          <RegisterOption />
         </RegisterFrame>
 
         <RegisterFrame title="원산지 *">
           <RegisterInput
-            setInputData={handleInputChange}
             placeholder={'원산지를 입력해주세요'}
             name={'origin'}
           />
@@ -116,7 +104,6 @@ const RegisterItem = () => {
 
         <RegisterFrame title="배송비 *">
           <RegisterInput
-            setInputData={handleInputChange}
             placeholder={'배송비를 입력해주세요'}
             name={'delivery_fee'}
           />
@@ -151,4 +138,4 @@ const SubmitButton = styled.button`
   margin: 6em 0 10em;
 `;
 
-export default RegisterItem;
+export default ProductRegister;
