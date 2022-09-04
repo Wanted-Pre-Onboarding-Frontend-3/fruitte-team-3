@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useIsActiveTabBar } from '../../../components/BaseComponent/TabBar/hook';
-import { Text } from '../../../components/ProductList/Common';
 import { colors } from '../../../styles/colors';
 import { PlainButton } from '../../../utils/css.util';
 

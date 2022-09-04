@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 import {
   newItemInfoState,
-  newOptDataState,
   itemCodeState,
   mainImgUrlState,
   detailImgUrlState,
@@ -18,10 +17,9 @@ const RegisterInput = ({ placeholder, inputData, name }) => {
   const itemCode = useRecoilValue(itemCodeState);
   const mainImage = useRecoilValue(mainImgUrlState);
   const detailImage = useRecoilValue(detailImgUrlState);
-  const [optTitle, setOptTitle] = useRecoilState(itemOptTitleState);
-  const [optPrice, setOptPrice] = useRecoilState(itemOptPriceState);
-  const [newOptData, setNewOptData] = useState({});
-  const [options, setOptions] = useState([]); // 최종 옵션 모음
+  const [setOptTitle] = useRecoilState(itemOptTitleState);
+  const [setOptPrice] = useRecoilState(itemOptPriceState);
+  const [options] = useState([]); // 최종 옵션 모음
 
   const handleInputData = (e) => {
     const key = e.target.name;
