@@ -179,12 +179,15 @@ src
 
 ## 7. 구현 결과 @@@체이지 캡쳐와 함께 작성하면 어떨까 하여, 우선 비워뒀습니다@@@
 #### 상품 등록 페이지
+
+<img src="https://user-images.githubusercontent.com/81549337/188328968-c4f81c99-9c4b-4737-89b6-939c21e11a7d.PNG" width="400" />
+
 - 과제 요건 충족을 위해 기본적인 **상품 정보**(이미지, 상품 옵션, 수량, 가격 등) 및 추가적인 정보 등록 페이지를 구현하였습니다.
 - 상품 등록시 필요한 input값을 **recoil**을 이용해 관리하여 **기존 json 데이터**와 합치도록 하였습니다. 
 - **상품 코드**는 랜덤으로 생성됩니다.
 - **이미지 첨부**는 메인 이미지의 경우 하나, 상세정보의 경우 여러 장을 올릴 수 있도록 하였습니다. 
 - **재사용성**을 위해 input, 이미지 첨부 버튼, 상품옵션 컴포넌트를 별도로 만들었습니다. 
-- [src/components/ProductRegister/index.jsx](src/components/ProductRegister/index.jsx)
+- [src/components/ProductRegister/index.jsx](src/components/ProductRegister)
 #### 상품 주문 내역확인 페이지
 #### 상품 목록조회 페이지
 #### 상품목록 관리 페이지
