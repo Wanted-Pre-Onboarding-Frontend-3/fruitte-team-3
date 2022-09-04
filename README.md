@@ -26,8 +26,8 @@ $ yarn start
 | ------ | ------ |
 | 김리후 | 팀원 / 상품 등록 페이지. Gnb |
 | 김지현 | 팀원 / 상품 주문 내역확인 페이지 | 
-| 이경준 | 팀원 / 상품 목록조회 페이지 |
-| 이혜성 | **팀장** / 상품목록 관리 페이지 |
+| 이경준 | 팀원 / 상품 목록조회 페이지, 초기 세팅 |
+| 이혜성 | **팀장** / 상품목록 관리 페이지, S3 + github actions 정적 사이트 CD |
 | 문선화 | 팀원 / 상품 주문 페이지 |
 | 홍성준 | 팀원 / 상품 상세조회 페이지 |
 | 서수민 | 팀원 / 건강상의 이유로 불참 |
@@ -37,111 +37,94 @@ $ yarn start
 ## 4. 디렉토리 구조
 
 ```
-public                         
-├─ mock                        
-│  ├─ cart.json                
-│  ├─ product_detail.json      
-│  ├─ product_list_small.json  
-│  └─ product_manage.json      
-├─ favicon.ico                 
-├─ index.html                  
-├─ logo192.png                 
-├─ logo512.png                 
-├─ manifest.json               
-└─ robots.txt                  
-```
-
-<br>
-
-```
-src                                    
-├─ api                                 
-├─ assets                              
-│  └─ images                           
-│     ├─ fruitte-logo.png              
-│     ├─ symbol.png                    
-│     └─ user-default.png              
-├─ components                          
-│  ├─ BaseComponent                    
-│  │  ├─ DropDown                      
-│  │  │  └─ index.jsx                  
-│  │  ├─ slider                        
-│  │  │  ├─ index.jsx                  
-│  │  │  └─ slideItem.jsx              
-│  │  └─ TabBar                        
-│  │     ├─ hook.js                    
-│  │     └─ index.jsx                  
-│  ├─ Order                            
-│  │  ├─ OrderInput.jsx                
-│  │  ├─ OrderList.jsx                 
-│  │  ├─ OrderSelectBox.jsx            
-│  │  └─ SearchAddress.jsx             
-│  ├─ OrderHistory                     
-│  │  ├─ LeftMenu.jsx                  
-│  │  ├─ OrdererInfo.jsx               
-│  │  ├─ OrderItemLayout.jsx           
-│  │  ├─ OrderListHeader.jsx           
-│  │  └─ UserInfo.jsx                  
-│  ├─ ProductDetail                    
-│  │  └─ useProductDetailTabBar.jsx    
-│  ├─ ProductList                      
-│  │  ├─ BottomSection.jsx             
-│  │  ├─ Common.jsx                    
-│  │  ├─ InterviewItem.jsx             
-│  │  ├─ Pagination.jsx                
-│  │  ├─ ProductItem.jsx               
-│  │  ├─ Symbol.jsx                    
-│  │  ├─ Tags.jsx                      
-│  │  └─ TopSection.jsx                
-│  ├─ ProductRegister                  
-│  │  ├─ index.jsx                     
-│  │  ├─ RegisterFrame.jsx             
-│  │  ├─ RegisterImgButton.jsx         
-│  │  ├─ RegisterInput.jsx             
-│  │  ├─ RegisterOption.jsx            
-│  │  └─ RegisterOptionSet.jsx         
-│  ├─ SamplePage                       
-│  │  └─ sample-page-components-list   
-│  ├─ Gnb.jsx                          
-│  └─ Layout.jsx                       
-├─ mock                                
-│  ├─ interview_list.json              
-│  └─ product_list.json                
-├─ pages                               
-│  ├─ Order                            
-│  │  ├─ Order.jsx                     
-│  │  └─ OrderComplete.jsx             
-│  ├─ OrderHistory                     
-│  │  ├─ OrderHistory.jsx              
-│  │  └─ OrderHistoryDetail.jsx        
-│  ├─ ProductDetail                    
-│  │  └─ ProductDetail.jsx             
-│  ├─ ProductList                      
-│  │  └─ ProductList.jsx               
-│  ├─ productManage                    
-│  │  ├─ components                    
-│  │  │  └─ tableWithCheckbox.jsx      
-│  │  └─ index.jsx                     
-│  └─ home.jsx                         
-├─ router                              
-├─ src                                 
-│  └─ ProductDetail                    
-│     └─ ProductDetailContentInfo.jsx  
-├─ styles                              
-│  ├─ colors.js                        
-│  ├─ fonts.js                         
-│  └─ globalStyles.js                  
-├─ utils                               
-│  ├─ css.util.js                      
-│  ├─ fetch.util.js                    
-│  ├─ hooks.js                         
-│  ├─ orderStore.js                    
-│  └─ registerStore.js                 
-├─ App.js                              
-├─ App.test.js                         
-├─ index.js                            
-├─ reportWebVitals.js                  
-└─ setupTests.js                       
+📦src
+ ┣ 📂assets
+ ┃ ┗ 📂images
+ ┃ ┃ ┣ 📜fruitte-logo.png
+ ┃ ┃ ┣ 📜symbol.png
+ ┃ ┃ ┗ 📜user-default.png
+ ┣ 📂components
+ ┃ ┣ 📂BaseComponent
+ ┃ ┃ ┣ 📂DropDown
+ ┃ ┃ ┃ ┗ 📜index.jsx
+ ┃ ┃ ┣ 📂slider
+ ┃ ┃ ┃ ┣ 📜index.jsx
+ ┃ ┃ ┃ ┗ 📜slideItem.jsx
+ ┃ ┃ ┗ 📂TabBar
+ ┃ ┃ ┃ ┣ 📜hook.js
+ ┃ ┃ ┃ ┗ 📜index.jsx
+ ┃ ┣ 📂Order
+ ┃ ┃ ┣ 📜OrderInput.jsx
+ ┃ ┃ ┣ 📜OrderList.jsx
+ ┃ ┃ ┣ 📜OrderSelectBox.jsx
+ ┃ ┃ ┗ 📜SearchAddress.jsx
+ ┃ ┣ 📂OrderHistory
+ ┃ ┃ ┣ 📜LeftMenu.jsx
+ ┃ ┃ ┣ 📜OrdererInfo.jsx
+ ┃ ┃ ┣ 📜OrderItemLayout.jsx
+ ┃ ┃ ┣ 📜OrderListHeader.jsx
+ ┃ ┃ ┗ 📜UserInfo.jsx
+ ┃ ┣ 📂ProductDetail
+ ┃ ┃ ┣ 📜ProductDetailContentInfo.jsx
+ ┃ ┃ ┣ 📜ProductDetailCounter.jsx
+ ┃ ┃ ┣ 📜ProductDetailItemOption.jsx
+ ┃ ┃ ┗ 📜useProductDetailTabBar.jsx
+ ┃ ┣ 📂ProductList
+ ┃ ┃ ┣ 📜BottomSection.jsx
+ ┃ ┃ ┣ 📜Common.jsx
+ ┃ ┃ ┣ 📜InterviewItem.jsx
+ ┃ ┃ ┣ 📜Pagination.jsx
+ ┃ ┃ ┣ 📜ProductItem.jsx
+ ┃ ┃ ┣ 📜Symbol.jsx
+ ┃ ┃ ┣ 📜Tags.jsx
+ ┃ ┃ ┗ 📜TopSection.jsx
+ ┃ ┣ 📂ProductRegister
+ ┃ ┃ ┣ 📜index.jsx
+ ┃ ┃ ┣ 📜RegisterFrame.jsx
+ ┃ ┃ ┣ 📜RegisterImgButton.jsx
+ ┃ ┃ ┣ 📜RegisterInput.jsx
+ ┃ ┃ ┣ 📜RegisterOption.jsx
+ ┃ ┃ ┗ 📜RegisterOptionSet.jsx
+ ┃ ┣ 📜Gnb.jsx
+ ┃ ┗ 📜Layout.jsx
+ ┣ 📂hook
+ ┃ ┗ 📜useCounter.js
+ ┣ 📂mock
+ ┃ ┣ 📜interview_list.json
+ ┃ ┗ 📜product_list.json
+ ┣ 📂pages
+ ┃ ┣ 📂Order
+ ┃ ┃ ┣ 📜Order.jsx
+ ┃ ┃ ┗ 📜OrderComplete.jsx
+ ┃ ┣ 📂OrderHistory
+ ┃ ┃ ┣ 📜OrderHistory.jsx
+ ┃ ┃ ┗ 📜OrderHistoryDetail.jsx
+ ┃ ┣ 📂ProductDetail
+ ┃ ┃ ┗ 📜ProductDetail.jsx
+ ┃ ┣ 📂ProductList
+ ┃ ┃ ┗ 📜ProductList.jsx
+ ┃ ┣ 📂productManage
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┗ 📜tableWithCheckbox.jsx
+ ┃ ┃ ┗ 📜index.jsx
+ ┃ ┗ 📜home.jsx
+ ┣ 📂styles
+ ┃ ┣ 📜colors.js
+ ┃ ┣ 📜fonts.js
+ ┃ ┗ 📜globalStyles.js
+ ┣ 📂utils
+ ┃ ┣ 📜.gitkeep
+ ┃ ┣ 📜css.util.js
+ ┃ ┣ 📜fetch.util.js
+ ┃ ┣ 📜hooks.js
+ ┃ ┣ 📜orderStore.js
+ ┃ ┣ 📜purchaseStore.js
+ ┃ ┗ 📜registerStore.js
+ ┣ 📜App.js
+ ┣ 📜App.test.js
+ ┣ 📜index.js
+ ┣ 📜reportWebVitals.js
+ ┗ 📜setupTests.js                   
 ```
 
 
@@ -194,8 +177,17 @@ src
 - 스토어 상품 주문 내역(주문 번호, 상품명, 주문 수량, 주문 옵션)을 확인할 수 있는 페이지를 구현하였습니다.
 - 주문 번호를 통해, 배송 정보를 포함한 주문 상세정보를 뽑아 낼 수 있게끔 구현했습니다.
 
-#### 상품 목록조회 페이지
+#### 상품목록 조회 페이지
+![product-list-demo](https://user-images.githubusercontent.com/27720475/188330193-3d4cf9e0-077d-44b9-be5f-aca4429652f0.gif)
+- 스토어 상품목록 조회
+- 10개 단위 페이지네이션
+
 #### 상품목록 관리 페이지
+![product-manage-demo](https://user-images.githubusercontent.com/27720475/188330036-60b462f6-ac2e-4ac3-a901-e6aa8f311c3b.gif)
+- 테이블 상품 전체선택 기능
+- 상품 삭제 기능: alert로 동작
+- 상품 노출 여부 변경: alert로 동작
+
 #### 상품 주문 페이지
 - 사용자가 상품 주문시 경험하는 보편적인 UI/UX를 구현하는 것을 목표로 작업하였습니다.
 	- 카카오 api를 사용한 우편번호,주소 검색
