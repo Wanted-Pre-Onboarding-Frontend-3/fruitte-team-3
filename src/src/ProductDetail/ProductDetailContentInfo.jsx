@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import { DropDown } from '../../components/BaseComponent/DropDown';
 import { Text } from '../../components/ProductList/Common';
 import { colors } from '../../styles/colors';
 import { PlainButton } from '../../utils/css.util';
+import { purchase } from '../../utils/purchaseStore';
 
 export function ProductDetailContentInfo(props) {
   const { contentInfo, setOption } = props;
 
   const [itemOption, setItemOption] = useState('');
   const [dropdownValue, setDropdownValue] = useState('');
+
+  const purchaseItem = useRecoilValue(purchase);
 
   useEffect(() => {
     if (!contentInfo) return;
@@ -28,13 +32,21 @@ export function ProductDetailContentInfo(props) {
         }),
       );
 
-      return {
-        ...prev,
-        [dropdownValue]: true,
-      };
+      return dropdownValue;
     });
   }, [contentInfo, dropdownValue]);
 
+  const handlePurchase = () => {
+    if (purchaseItem.length === 0) {
+      return;
+    }
+
+    alert(
+      `${JSON.stringify(
+        purchaseItem,
+      )}를 구매하시겠습니까?\n 구매페이지로 이동합니다.`,
+    );
+  };
   return (
     <InfoWrap>
       <ContentInfoWrap>
@@ -87,7 +99,7 @@ export function ProductDetailContentInfo(props) {
         </DropDownWrap>
       )}
       <ButtonWrap>
-        <PurchaseButton>구매하기</PurchaseButton>
+        <PurchaseButton onClick={handlePurchase}>구매하기</PurchaseButton>
         <AddCartButton>장바구니</AddCartButton>
         <AddLikeButton>찜</AddLikeButton>
       </ButtonWrap>
