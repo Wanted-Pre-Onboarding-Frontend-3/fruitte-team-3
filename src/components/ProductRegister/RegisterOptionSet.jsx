@@ -42,9 +42,10 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  border: 1px dashed ${colors.gray4};
+  border: 1px dashed ${colors.spring};
   padding: 1em;
   margin-bottom: 1em;
+  border-radius: 5px;
 
   input {
     border: none;
@@ -81,6 +82,8 @@ const OptionButton = styled.div`
   background-color: transparent;
   padding: 0;
   margin-left: 0.3em;
+  color: ${colors.spring};
+  cursor: pointer;
 `;
 
 export default RegisterOptionSet;

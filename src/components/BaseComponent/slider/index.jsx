@@ -14,6 +14,7 @@ const Slide = (props) => {
     if (slideRef.current != null) {
       slideRef.current.style.width = items ? `${items.length * 100}vw` : '0';
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items?.length]);
 
   useEffect(() => {
@@ -41,6 +42,7 @@ const Slide = (props) => {
           ? `translate(0vw)`
           : `translate(-${slideCurrentPosition * boxSize}px)`;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slideCurrentPosition]);
   return (
     <SlideContainer>

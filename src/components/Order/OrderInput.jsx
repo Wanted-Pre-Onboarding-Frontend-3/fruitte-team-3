@@ -21,6 +21,8 @@ const InputContainer = styled.div`
   justify-content: space-between;
   margin: 1rem;
   ${fonts.Body1};
+  font-weight: 600;
+  color: ${colors.gray2};
 
   input {
     width: 70%;

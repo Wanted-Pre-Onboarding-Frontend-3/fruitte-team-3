@@ -1,5 +1,9 @@
 import React from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
+import styled from 'styled-components';
+
+import { colors } from '../../styles/colors';
+import { fonts } from '../../styles/fonts';
 
 const SearchAddress = (props) => {
   const CURRENT_URL =
@@ -36,10 +40,30 @@ const SearchAddress = (props) => {
   };
 
   return (
-    <button type="button" onClick={handleClick}>
-      주소찾기
-    </button>
+    <BtnWrapper>
+      <button type="button" onClick={handleClick}>
+        주소찾기
+      </button>
+    </BtnWrapper>
   );
 };
 
 export default SearchAddress;
+
+const BtnWrapper = styled.div`
+  margin-top: 1rem;
+
+  button {
+    width: 100%;
+    border: 0;
+    ${fonts.body1};
+    color: ${colors.white};
+    background: ${colors.spring};
+    padding: 1rem 2rem;
+    border-radius: 0.4rem;
+  }
+
+  button:hover {
+    background: ${colors.summer};
+  }
+`;

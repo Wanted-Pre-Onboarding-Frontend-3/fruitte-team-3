@@ -10,13 +10,13 @@ import { detailImgUrlState, mainImgUrlState } from '../../utils/registerStore';
 const RegisterImgButton = ({ imgId, isMultiple }) => {
   const [imgFile, setImgFile] = useState('');
   const setMainImgUrl = useSetRecoilState(mainImgUrlState);
-  const [showImgs, setShowImgs] = useRecoilState(detailImgUrlState);
+  const [detailImgs, setDetailImgs] = useRecoilState(detailImgUrlState);
 
   const handleAttachedImg = (e) => {
     const file = e.target.files[0];
     const imgLists = e.target.files;
 
-    let imgUrlLists = [...showImgs];
+    let imgUrlLists = [...detailImgs];
 
     if (!isMultiple) {
       const currentImgUrl = URL.createObjectURL(file);
@@ -35,15 +35,12 @@ const RegisterImgButton = ({ imgId, isMultiple }) => {
       if (imgUrlLists.length > 5) {
         imgUrlLists = imgUrlLists.slice(0, 5);
       }
-
-      // 문제 부분
-      setShowImgs(imgUrlLists);
-      console.log(showImgs);
+      setDetailImgs(imgUrlLists);
     }
   };
 
   const handleRemoveFile = (id) => {
-    setShowImgs(showImgs.filter((_, index) => index !== id));
+    setDetailImgs(detailImgs.filter((_, index) => index !== id));
     setImgFile('');
   };
 
@@ -73,7 +70,7 @@ const RegisterImgButton = ({ imgId, isMultiple }) => {
       )}
 
       {isMultiple &&
-        showImgs.map((image, id) => (
+        detailImgs.map((image, id) => (
           <AddImgs key={id}>
             <img src={image} alt={`${image}-${id}`} />
 
@@ -87,18 +84,17 @@ const RegisterImgButton = ({ imgId, isMultiple }) => {
 };
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: ${(props) => (props.multiple ? 'column' : 'row')};
 
   label {
-    width: 100px;
     display: flex;
     align-items: center;
-    padding: 1em 0.6em;
+    width: 110px;
+    padding: 1em;
     font-size: 12px;
-    color: ${colors.gray3};
-    border: 1px solid ${colors.gray4};
+    color: ${colors.spring};
+    border: 1px solid ${colors.spring};
     border-radius: 4px;
     margin-right: 1em;
     text-align: center;
@@ -107,13 +103,13 @@ const Container = styled.div`
 
   input[type='file'] {
     display: none;
-    width: 100%;
   }
 
   button {
     border: none;
     appearance: none;
     background-color: transparent;
+    color: ${colors.spring};
   }
 `;
 

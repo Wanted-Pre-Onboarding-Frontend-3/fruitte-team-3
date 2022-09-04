@@ -1,13 +1,12 @@
-import OrderInput from '@components/Order/OrderInput';
-import OrderSelectBox from '@components/Order/OrderSelectBox';
-import TermsAgree from '@components/Order/TermsAgree';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
+import OrderInput from '../../components/Order/OrderInput';
 import OrderList from '../../components/Order/OrderList';
+import OrderSelectBox from '../../components/Order/OrderSelectBox';
 import SearchAddress from '../../components/Order/SearchAddress';
 import { colors } from '../../styles/colors';
 import { fonts } from '../../styles/fonts';
@@ -19,21 +18,26 @@ const Order = () => {
 
   const [orderList, setOrderList] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
+  const [totalShipCost, setTotalShipCost] = useState(0);
+  const [agree, setAgree] = useState(false);
   const orderNumber = Math.floor(Math.random() * 10000000) + 1;
   const orderTime = new Date().toLocaleString();
-  console.log(orderTime);
 
   useEffect(() => {
     const OrderProductsList = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3000/data/cart.json',
+          'http://localhost:3000/mock/cart.json',
         );
         setOrderList(response.data);
         let cost = [];
         response.data.map((item) => cost.push(item.total_cost));
         const total_cost = cost.reduce((prev, cur) => prev + cur);
         setTotalCost(total_cost);
+
+        const shipCost = response.data.map((item) => item.shipping_cost);
+        const totalShip = shipCost.reduce((pre, cur) => pre + cur);
+        setTotalShipCost(totalShip);
       } catch (error) {
         console.error(error);
       }
@@ -51,7 +55,7 @@ const Order = () => {
     fullAddress: '',
     detailAddress: '',
     payMethodId: 0,
-    agree: false,
+    payerName: '',
   });
 
   const {
@@ -63,11 +67,12 @@ const Order = () => {
     zipcode,
     fullAddress,
     detailAddress,
+    shippingMemo,
     payMethodId,
-    agree,
+    payerName,
   } = inputs;
 
-  const hadleChange = (e) => {
+  const handleChange = (e) => {
     const { value, name } = e.target;
     setInputs({
       ...inputs,
@@ -96,6 +101,10 @@ const Order = () => {
     });
   };
 
+  const handleAgree = () => {
+    setAgree(!agree);
+  };
+
   const handleOrderConfirm = async () => {
     const orderdata = {
       orderNumber,
@@ -112,38 +121,40 @@ const Order = () => {
       agree,
     };
     await setOrderState((prev) => [orderdata, ...prev]);
-    navigate('/order-complete');
+    navigate('/mypage/order');
   };
 
   return (
     <Container>
       <h1>주문 결제</h1>
       <h3>주문 상품</h3>
-      <OrderList orderList={orderList} />
-      <div>
-        <span>주문 총액</span>
-        <span>{totalCost} 원</span>
-      </div>
+      <Wrapper>
+        <OrderList
+          orderList={orderList}
+          totalShipCost={totalShipCost}
+          totalCost={totalCost}
+        />
+      </Wrapper>
       <h3>주문자 정보</h3>
       <Wrapper>
         <OrderInput
           label={'보내는 분'}
           name="ordererName"
           value={ordererName}
-          onChange={hadleChange}
+          onChange={handleChange}
         />
         <OrderInput
           label={'휴대폰'}
           name="ordererPhone"
           value={ordererPhone}
-          onChange={hadleChange}
+          onChange={handleChange}
         />
         <OrderInput
           label={'이메일(선택)'}
           name="ordererEmail"
           type="email"
           value={ordererEmail}
-          onChange={hadleChange}
+          onChange={handleChange}
         />
       </Wrapper>
       <h3>배송 정보</h3>
@@ -156,13 +167,13 @@ const Order = () => {
               label={'받는 분'}
               name="ordererName"
               value={ordererName}
-              onChange={hadleChange}
+              onChange={handleChange}
             />
             <OrderInput
               label={'휴대폰'}
               name="ordererPhone"
               value={ordererPhone}
-              onChange={hadleChange}
+              onChange={handleChange}
             />
           </>
         ) : (
@@ -171,65 +182,80 @@ const Order = () => {
               label={'받는 분'}
               name="delivName"
               value={delivName}
-              onChange={hadleChange}
+              onChange={handleChange}
             />
             <OrderInput
               label={'휴대폰'}
               name="delivPhone"
               value={delivPhone}
-              onChange={hadleChange}
+              onChange={handleChange}
             />
           </>
         )}
-        <OrderInput
-          label={'우편번호'}
-          value={zipcode}
-          readOnly={true}
-          onChange={hadleChange}
-        />
         <SearchAddress handleAddress={handleAddress} />
-        <OrderInput
-          label={'주소'}
-          value={fullAddress}
-          readOnly={true}
-          onChange={hadleChange}
-        />
+        <OrderInput label={'우편번호'} value={zipcode} readOnly={true} />
+        <OrderInput label={'주소'} value={fullAddress} readOnly={true} />
         <OrderInput
           label={'상세주소'}
-          name={detailAddress}
-          // value={detailAddress}
-          onChange={hadleChange}
+          name="detailAddress"
+          value={detailAddress}
+          onChange={handleChange}
         />
-        <OrderSelectBox />
+        <OrderSelectBox
+          label={'배송메모'}
+          name={shippingMemo}
+          value={shippingMemo}
+          onChange={handleChange}
+        />
       </Wrapper>
       <h3>결제 수단</h3>
-      <div>
+      <Wrapper>
         <input
           type="radio"
-          name="pay"
-          id="0"
+          name="payMethodId"
+          value={0}
+          onChange={handleChange}
           defaultChecked
-          value={payMethodId}
-          onChange={hadleChange}
         />
         <label htmlFor="0">신용카드</label>
         <input
           type="radio"
-          name="pay"
-          id="1"
-          value={payMethodId}
-          onChange={hadleChange}
+          name="payMethodId"
+          value={1}
+          onChange={handleChange}
         />
         <label htmlFor="1">무통장입금</label>
-        {payMethodId === '1' && <input type="text" placeholder="입금자명" />}
-      </div>
+        {payMethodId === '1' && (
+          <input
+            className="payerName"
+            name="payerName"
+            value={payerName}
+            placeholder={'입금자명'}
+            onChange={handleChange}
+          />
+        )}
+      </Wrapper>
       <h3>개인정보 수집/제공</h3>
-      <TermsAgree name={agree} onChange={hadleChange} />
-      <BtnWrapper>
-        <button type="button" onClick={handleOrderConfirm}>
-          {totalCost}원 결제하기
-        </button>
-      </BtnWrapper>
+      <Wrapper>
+        <input
+          type="checkbox"
+          name="agree"
+          onClick={handleAgree}
+          value={agree}
+        />
+        결제 진행 필수 전체 동의
+        <BtnWrapper>
+          {agree ? (
+            <button type="button" onClick={handleOrderConfirm}>
+              {totalCost}원 결제하기
+            </button>
+          ) : (
+            <button type="button" onClick={handleOrderConfirm} disabled>
+              {totalCost}원 결제하기
+            </button>
+          )}
+        </BtnWrapper>
+      </Wrapper>
     </Container>
   );
 };
@@ -237,24 +263,32 @@ const Order = () => {
 export default Order;
 
 const Container = styled.div`
-  // margin: 0 auto;
+  width: 60%;
 
   h1 {
+    padding-top: 3rem;
     ${fonts.H1};
+    color: ${colors.spring};
+    text-align: center;
   }
 
-  hr {
-    color: ${colors.gray4};
-  }
   h3 {
     ${fonts.H3};
-    color: ${colors.spring};
+    color: ${colors.gray1};
     margin-top: 5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid ${colors.gray5};
   }
+
+  .payerName {
+    margin-left: 0.8rem;
+    height: auto;
+    line-height: normal;
+    padding: 0.6em 0.5em;
+  }
 `;
 const Wrapper = styled.div`
+  margin-top: 2rem;
   p {
     ${fonts.Body2};
   }
@@ -264,6 +298,7 @@ const BtnWrapper = styled.div`
   margin-top: 3rem;
 
   button {
+    width: 100%;
     border: 0;
     ${fonts.body1};
     color: ${colors.white};
@@ -274,5 +309,9 @@ const BtnWrapper = styled.div`
 
   button:hover {
     background: ${colors.summer};
+  }
+
+  button:disabled {
+    background: ${colors.gray4};
   }
 `;
