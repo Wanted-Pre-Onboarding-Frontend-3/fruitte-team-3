@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link, useMatch } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import Slide from '../../components/BaseComponent/slider';
@@ -19,7 +18,6 @@ import { ProductDetailContentInfo } from '../../src/ProductDetail/ProductDetailC
 import { colors } from '../../styles/colors';
 import { media } from '../../utils/css.util';
 import { useQuery } from '../../utils/fetch.util';
-import { purchase } from '../../utils/purchaseStore';
 
 function ProductDetail() {
   const matchId = useMatch(`/fruitstore/:id`);
@@ -142,7 +140,7 @@ const DivWrap = styled.div`
   display: flex;
   column-gap: 100px;
   padding: 0 10px;
-  margin-top: 90px;
+  margin-top: 30px;
 
   ${media.mobile} {
     flex-direction: column;
@@ -202,7 +200,7 @@ export const TabBarWrap = styled(TabBar).attrs((props) => ({
   ...props,
 }))`
   position: sticky;
-  top: 70px;
+  top: 108px;
   width: 100%;
   max-width: 1200px;
   margin-top: 40px;
