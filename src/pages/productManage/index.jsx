@@ -13,7 +13,7 @@ export default function ProductManage() {
 
   const getProductList = async () => {
     try {
-      const { data } = await axios.get('./mock/product_list_small.json');
+      const { data } = await axios.get('../mock/product_manage.json');
       setProductList(data);
     } catch (err) {
       console.warn(err);
