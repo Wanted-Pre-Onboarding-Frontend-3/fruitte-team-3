@@ -60,7 +60,7 @@ const RegisterInput = ({ placeholder, inputData, name }) => {
 
 const Container = styled.div`
   width: 100%;
-  padding: 0.4em;
+  margin-bottom: 1em;
 `;
 
 const ItemInput = styled.input`

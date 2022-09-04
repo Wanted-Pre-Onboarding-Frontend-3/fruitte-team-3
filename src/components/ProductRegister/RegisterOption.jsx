@@ -38,9 +38,9 @@ const OptAddBtn = styled.button`
   width: 100%;
   padding: 1em 0.6em;
   font-size: 12px;
-  color: ${colors.gray3};
+  color: ${colors.spring};
   background-color: white;
-  border: 1px solid ${colors.gray4};
+  border: 1px solid ${colors.spring};
   border-radius: 4px;
   margin: 1em 0;
   text-align: center;

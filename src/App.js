@@ -16,6 +16,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<ProductList />} />
+          <Route path="/fruitstore" element={<ProductList />} />
           <Route path="/fruitstore/*" element={<ProductDetail />} />
           <Route path="/admin/product-manage" element={<ProductManage />} />
           <Route path="/admin/product-register" element={<ProductRegister />} />
