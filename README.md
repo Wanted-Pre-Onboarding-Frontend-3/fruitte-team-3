@@ -160,7 +160,7 @@ $ yarn start
 
 <br>
 
-## 7. 구현 결과 @@@체이지 캡쳐와 함께 작성하면 어떨까 하여, 우선 비워뒀습니다@@@
+## 7. 구현 결과
 #### 상품 등록 페이지
 
 <img src="https://user-images.githubusercontent.com/81549337/188328968-c4f81c99-9c4b-4737-89b6-939c21e11a7d.PNG" width="400" />
