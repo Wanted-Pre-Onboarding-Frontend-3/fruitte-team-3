@@ -25,7 +25,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# file
-/public/data/mockdata.json
-/src/components/Order/TermsAgree.js

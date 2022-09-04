@@ -1,14 +1,17 @@
+import OrderInput from '@components/Order/OrderInput';
+import OrderSelectBox from '@components/Order/OrderSelectBox';
+import TermsAgree from '@components/Order/TermsAgree';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-import OrderList from '../components/Order/OrderList';
-import SearchAddress from '../components/Order/SearchAddress';
-import { colors } from '../styles/colors';
-import { fonts } from '../styles/fonts';
-import { orderState } from '../utils/orderStore';
+import OrderList from '../../components/Order/OrderList';
+import SearchAddress from '../../components/Order/SearchAddress';
+import { colors } from '../../styles/colors';
+import { fonts } from '../../styles/fonts';
+import { orderState } from '../../utils/orderStore';
 
 const Order = () => {
   const navigate = useNavigate();
@@ -16,6 +19,7 @@ const Order = () => {
 
   const [orderList, setOrderList] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
+  const orderNumber = Math.floor(Math.random() * 100) + 1;
 
   useEffect(() => {
     const OrderProductsList = async () => {
@@ -34,89 +38,77 @@ const Order = () => {
     };
     OrderProductsList();
   }, []);
-  const [ordererName, setOdererName] = useState('');
-  const [ordererPhone, setOrdererPhone] = useState('');
-  const [ordererEmail, setOrdererEmail] = useState('');
 
-  const [isSameInfo, setIsSameInfo] = useState(false);
-  const [delivName, setDelivName] = useState('');
-  const [delivPhone, setDelivPhone] = useState('');
-  const [address, setAddress] = useState({
+  const [inputs, setInputs] = useState({
+    ordererName: '',
+    ordererPhone: '',
+    ordererEmail: '',
+    delivName: '',
+    delivPhone: '',
     zipcode: '',
     fullAddress: '',
     detailAddress: '',
+    payMethodId: 0,
+    agree: false,
   });
 
-  const [payMethodId, setPayMethodId] = useState(0);
-  const [agree, setAgree] = useState(false);
+  const {
+    ordererName,
+    ordererPhone,
+    ordererEmail,
+    delivName,
+    delivPhone,
+    zipcode,
+    fullAddress,
+    detailAddress,
+    payMethodId,
+    agree,
+  } = inputs;
 
-  const handleOdererNameChange = (e) => {
-    setOdererName(e.target.value);
+  const hadleChange = (e) => {
+    const { value, name } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
   };
 
-  const handleOrdererPhoneChange = (e) => {
-    setOrdererPhone(e.target.value);
-  };
-
-  const handleOrdererEmailChange = (e) => {
-    setOrdererEmail(e.target.value);
-  };
+  const [isSameInfo, setIsSameInfo] = useState(false);
 
   const handleIsSameInfo = () => {
     setIsSameInfo(!isSameInfo);
     if (!isSameInfo) {
-      setDelivName(ordererName);
-      setDelivPhone(ordererPhone);
+      setInputs({
+        ...inputs,
+        delivName: ordererName,
+        delivPhone: ordererPhone,
+      });
     }
   };
 
-  const handelDelivNameChange = (e) => {
-    setDelivName(e.target.value);
-  };
-
-  const handelDelivPhoneChange = (e) => {
-    setDelivPhone(e.target.value);
-  };
-
   const handleAddress = (data) => {
-    setAddress({
+    setInputs({
+      ...inputs,
       fullAddress: data.fullAddress,
       zipcode: data.zipcode,
     });
   };
 
-  const handleDetailAddress = (e) => {
-    setAddress({
-      ...address,
-      detailAddress: e.target.value,
-    });
-    console.log(address);
-  };
-
-  const handlePayMethod = (e) => {
-    setPayMethodId(e.target.id);
-  };
-
-  const handleTermsAgree = () => {
-    setAgree(!agree);
-  };
-
   const handleOrderConfirm = async () => {
     const orderdata = {
+      orderNumber,
       totalCost,
       orderer_name: ordererName,
       orderer_phone: ordererPhone,
       orderer_email: ordererEmail,
       deliv_name: delivName,
       deliv_Phone: delivPhone,
-      address: address,
+      address: fullAddress,
       payMethod: payMethodId,
       agree,
     };
     await setOrderState((prev) => [orderdata, ...prev]);
     navigate('/order-complete');
-
-    console.log('주문 완료');
   };
 
   return (
@@ -124,83 +116,87 @@ const Order = () => {
       <h1>주문 결제</h1>
       <h3>주문 상품</h3>
       <OrderList orderList={orderList} />
+      <div>
+        <span>주문 총액</span>
+        <span>{totalCost} 원</span>
+      </div>
       <h3>주문자 정보</h3>
       <Wrapper>
-        <p>보내는 분</p>
-        <input
-          type="text"
+        <OrderInput
+          label={'보내는 분'}
+          name="ordererName"
           value={ordererName}
-          onChange={handleOdererNameChange}
+          onChange={hadleChange}
         />
-        <p>휴대폰</p>
-        <input
-          type="text"
+        <OrderInput
+          label={'휴대폰'}
+          name="ordererPhone"
           value={ordererPhone}
-          onChange={handleOrdererPhoneChange}
+          onChange={hadleChange}
         />
-        <p>이메일(선택)</p>
-        <input
+        <OrderInput
+          label={'이메일(선택)'}
+          name="ordererEmail"
           type="email"
           value={ordererEmail}
-          onChange={handleOrdererEmailChange}
+          onChange={hadleChange}
         />
       </Wrapper>
       <h3>배송 정보</h3>
       <Wrapper>
         <input type="checkbox" value={isSameInfo} onClick={handleIsSameInfo} />
         <label>주문자 정보와 동일</label>
-        <p>받는 분</p>
         {isSameInfo ? (
           <>
-            <input type="text" value={ordererName} readOnly={true} />
-            <p>휴대폰</p>
-            <input type="text" value={ordererPhone} readOnly={true} />
+            <OrderInput
+              label={'받는 분'}
+              name="ordererName"
+              value={ordererName}
+              onChange={hadleChange}
+            />
+            <OrderInput
+              label={'휴대폰'}
+              name="ordererPhone"
+              value={ordererPhone}
+              onChange={hadleChange}
+            />
           </>
         ) : (
           <>
-            <input
-              type="text"
+            <OrderInput
+              label={'받는 분'}
+              name="delivName"
               value={delivName}
-              onChange={handelDelivNameChange}
+              onChange={hadleChange}
             />
-            <p>휴대폰</p>
-            <input
-              type="text"
+            <OrderInput
+              label={'휴대폰'}
+              name="delivPhone"
               value={delivPhone}
-              onChange={handelDelivPhoneChange}
+              onChange={hadleChange}
             />
           </>
         )}
-
-        <p>주소</p>
-        <input
-          type="text"
-          placeholder="우편번호"
-          value={address.zipcode}
+        <OrderInput
+          label={'우편번호'}
+          value={zipcode}
           readOnly={true}
+          onChange={hadleChange}
         />
         <SearchAddress handleAddress={handleAddress} />
-        <br />
-        <input
-          type="text"
-          placeholder="주소"
-          value={address.fullAddress}
+        <OrderInput
+          label={'주소'}
+          value={fullAddress}
           readOnly={true}
+          onChange={hadleChange}
         />
-        <br />
-        <input
-          type="text"
-          placeholder="상세주소"
-          value={address.detailAddress}
-          onChange={handleDetailAddress}
+        <OrderInput
+          label={'상세주소'}
+          name={detailAddress}
+          // value={detailAddress}
+          onChange={hadleChange}
         />
-        <p>배송메모</p>
-        <select name="shipping-memo">
-          <option value="0">배송 메모를 선택하세요</option>
-          <option value="1">부재 시 현관에 놓아주세요.</option>
-          <option value="2">도착 전 연락주세요.</option>
-          <option value="3">직접 입력</option>
-        </select>
+        <OrderSelectBox />
       </Wrapper>
       <h3>결제 수단</h3>
       <div>
@@ -210,7 +206,7 @@ const Order = () => {
           id="0"
           defaultChecked
           value={payMethodId}
-          onChange={handlePayMethod}
+          onChange={hadleChange}
         />
         <label htmlFor="0">신용카드</label>
         <input
@@ -218,18 +214,18 @@ const Order = () => {
           name="pay"
           id="1"
           value={payMethodId}
-          onChange={handlePayMethod}
+          onChange={hadleChange}
         />
         <label htmlFor="1">무통장입금</label>
         {payMethodId === '1' && <input type="text" placeholder="입금자명" />}
       </div>
       <h3>개인정보 수집/제공</h3>
-      <input type="checkbox" checked={agree} onClick={handleTermsAgree} />
-      <div>
+      <TermsAgree name={agree} onChange={hadleChange} />
+      <BtnWrapper>
         <button type="button" onClick={handleOrderConfirm}>
           결제하기
         </button>
-      </div>
+      </BtnWrapper>
     </Container>
   );
 };
@@ -244,6 +240,9 @@ const Container = styled.div`
     ${fonts.H1};
   }
 
+  hr {
+    color: ${colors.gray4};
+  }
   h3 {
     ${fonts.H3};
     color: ${colors.spring};
@@ -251,16 +250,25 @@ const Container = styled.div`
     padding-bottom: 1rem;
     border-bottom: 1px solid ${colors.gray5};
   }
-
-  input {
+`;
+const Wrapper = styled.div`
+  p {
     ${fonts.Body2};
   }
 `;
-const Wrapper = styled.div`
-  input {
-    width: 50%;
+
+const BtnWrapper = styled.div`
+  margin-top: 3rem;
+
+  button {
+    border: 0;
+    ${fonts.body1};
+    color: ${colors.white};
+    background: ${colors.spring};
+    padding: 1rem 2rem;
   }
-  p {
-    ${fonts.Body2};
+
+  button:hover {
+    background: ${colors.summer};
   }
 `;

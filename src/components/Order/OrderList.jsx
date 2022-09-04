@@ -7,11 +7,10 @@ const OrderList = (props) => {
       <ul>
         {props.orderList.map((orderItem, key) => (
           <li key={key}>
-            <img src={orderItem.product_img} alt="order thumbnail" />
+            <img src={orderItem.product_img} />
             <span>{orderItem.product_name}</span>
             <span>{orderItem.stock}</span>
             <span>{orderItem.sale_price}</span>
-            <span>{orderItem.options.title}</span>
           </li>
         ))}
       </ul>
