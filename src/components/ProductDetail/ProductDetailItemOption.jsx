@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { Counter } from '../../components/ProductDetail/ProductDetailCounter';
@@ -11,7 +11,7 @@ import { purchase } from '../../utils/purchaseStore';
 export const ItemOption = (props) => {
   const { itemOption } = props;
   const { componentProps, value } = useCounter(1);
-  const [purchaseAtom, setPurchaseAtom] = useRecoilState(purchase);
+  const setPurchaseAtom = useSetRecoilState(purchase);
 
   useEffect(() => {
     setPurchaseAtom((prev) => {

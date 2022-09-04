@@ -34,6 +34,7 @@ export function ProductDetailContentInfo(props) {
 
       return dropdownValue;
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentInfo, dropdownValue]);
 
   const handlePurchase = () => {
