@@ -1,35 +1,53 @@
-import {
-  PRODUCT_CONTENT_TAB,
-  QNA_TAB,
-  REVIEW_TAB,
-  useProductDetailTabBar,
-} from '@components/ProductDetail/useProductDetailTabBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useMatch } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import Slide from '../../components/BaseComponent/slider';
 import { TabBar } from '../../components/BaseComponent/TabBar';
 import { useTypedTabBar } from '../../components/BaseComponent/TabBar/hook';
+import { ItemOption } from '../../components/ProductDetail/ProductDetailItemOption';
+import {
+  PRODUCT_CONTENT_TAB,
+  QNA_TAB,
+  REVIEW_TAB,
+  useProductDetailTabBar,
+} from '../../components/ProductDetail/useProductDetailTabBar';
 import { Text } from '../../components/ProductList/Common';
 import Tags from '../../components/ProductList/Tags';
 import { ProductDetailContentInfo } from '../../src/ProductDetail/ProductDetailContentInfo';
 import { colors } from '../../styles/colors';
 import { media } from '../../utils/css.util';
 import { useQuery } from '../../utils/fetch.util';
+import { purchase } from '../../utils/purchaseStore';
 
 function ProductDetail() {
   const matchId = useMatch(`/fruitstore/:id`);
   const id = matchId.params.id;
   const { value } = useQuery({ fetch: '/mock/product_detail.json', getId: id });
 
-  const [addOption, setAddOption] = useState({});
-
+  const [addOption, setAddOption] = useState();
+  const [option, setOption] = useState([]);
   const { isShowTab, componentProps: productDetailTabBarProps } =
     useProductDetailTabBar({ reviewCount: value?.review_count });
   const { componentProps } = useTypedTabBar(productDetailTabBarProps);
 
   const haveTag = !!value?.tags.length;
+  useEffect(() => {
+    setOption((prev) => {
+      if (!prev) return;
+      return [...prev, addOption];
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [addOption]);
+
+  const removeUndefinedArray = option.filter(function (item) {
+    return item !== null && item !== undefined && item !== '';
+  });
+
+  const filteredOption = value?.description.itemOption.filter((item, index) => {
+    return item.title === removeUndefinedArray[index];
+  });
 
   return (
     <>
@@ -93,6 +111,13 @@ function ProductDetail() {
             value={addOption}
             setOption={setAddOption}
           />
+          {filteredOption && filteredOption.length !== 0 && (
+            <ItemOptionWrap>
+              {filteredOption.map((item) => {
+                return <ItemOption key={item.title} itemOption={item} />;
+              })}
+            </ItemOptionWrap>
+          )}
         </ContentWrap>
       </DivWrap>
 
@@ -197,15 +222,21 @@ const ContentImageWrap = styled.img`
   width: 100%;
   margin-top: 40px;
 `;
-export const ProductContentWrap = styled.div`
+const ProductContentWrap = styled.div`
   ${(props) => !props.isShow && 'display: none;'}
 `;
 
-export const ReviewSummaryWrap = styled.div`
+const ReviewSummaryWrap = styled.div`
   ${(props) => !props.isShow && 'display: none;'}
 `;
 
-export const NoticeDivWrap = styled.div`
+const NoticeDivWrap = styled.div`
   ${(props) => !props.isShow && 'display: none;'}
 `;
+
+const ItemOptionWrap = styled.div`
+  margin-top: 24px;
+  border: 1px solid ${colors.gray3};
+`;
+
 export default ProductDetail;
