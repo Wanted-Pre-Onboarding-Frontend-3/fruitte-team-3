@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import OrderComplete from './components/Order/OrderComplete';
 import ProductRegister from './components/ProductRegister';
-import Order from './pages/Order/Order';
 import Home from './pages/home';
+import Order from './pages/Order/Order';
+import OrderHistory from './pages/OrderHistory/OrderHistory';
+import OrderHistoryDetail from './pages/OrderHistory/OrderHistoryDetail';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import ProductList from './pages/ProductList/ProductList';
 import ProductManage from './pages/productManage';
-import OrderHistory from './pages/OrderHistory/OrderHistory';
-import OrderHistoryDetail from './pages/OrderHistory/OrderHistoryDetail';
 
 function App() {
   return (

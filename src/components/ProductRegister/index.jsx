@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -26,35 +25,15 @@ const ProductRegister = () => {
     setItemCode(Math.floor(new Date().getTime() + Math.random()));
   }, []);
 
-  const submitRequest = async () => {
-    try {
-      const response = await axios.post('http://localhost:3000/', {
-        newItemInfo,
-      });
-
-      const { status } = response;
-      if (status === 200) {
-        navigate('/fruitstore');
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleAddNewItem = () => {
     if (window.confirm('상품을 등록하시겠습니까?')) {
-      submitRequest();
+      setItemList([...itemList, newItemInfo]);
+      console.log(itemList);
     }
-
-    // 임의로 기존 데이터에 상품 추가
-    setItemList([...itemList, newItemInfo]);
-    console.log(itemList);
   };
 
   return (
     <>
-      <Gnb />
-
       <Container>
         <Title>상품등록</Title>
 
