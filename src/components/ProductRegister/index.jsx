@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
+import { colors } from '../../styles/colors';
+import { fonts } from '../../styles/fonts';
 import {
   itemListState,
   newItemInfoState,
   itemCodeState,
 } from '../../utils/registerStore';
-import Gnb from '../Gnb';
 import RegisterFrame from './RegisterFrame';
 import RegisterImgButton from './RegisterImgButton';
 import RegisterInput from './RegisterInput';
@@ -29,6 +30,8 @@ const ProductRegister = () => {
     if (window.confirm('상품을 등록하시겠습니까?')) {
       setItemList([...itemList, newItemInfo]);
       console.log(itemList);
+
+      navigate('/');
     }
   };
 
@@ -100,8 +103,8 @@ const ProductRegister = () => {
 };
 
 const Container = styled.div`
-  min-width: 750px;
-  margin-top: 250px;
+  min-width: 700px;
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -110,11 +113,22 @@ const Container = styled.div`
 `;
 
 const Title = styled.h2`
-  margin-bottom: 4em;
+  min-width: 700px;
+  padding-bottom: 3em;
+  margin-bottom: 3em;
+  text-align: center;
+  border-bottom: 2px solid ${colors.gray3};
+  ${fonts.H3};
 `;
 
 const SubmitButton = styled.button`
   margin: 6em 0 10em;
+  padding: 1.3em 6em;
+  border-radius: 4px;
+  border: none;
+  background-color: ${colors.spring};
+  color: ${colors.white};
+  ${fonts.Body2};
 `;
 
 export default ProductRegister;

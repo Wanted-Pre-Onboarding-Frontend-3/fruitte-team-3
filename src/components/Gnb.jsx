@@ -54,7 +54,7 @@ const Header = styled.header`
   padding: 1rem;
   background: ${colors.white};
   z-index: 50;
-  box-shadow: 0 2px 6px 0 ${colors.gray4};
+  box-shadow: 0 2px 6px 0 ${colors.gray5};
   user-select: none;
 
   img {

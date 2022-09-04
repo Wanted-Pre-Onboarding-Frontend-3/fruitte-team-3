@@ -87,18 +87,17 @@ const RegisterImgButton = ({ imgId, isMultiple }) => {
 };
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: ${(props) => (props.multiple ? 'column' : 'row')};
 
   label {
-    width: 100px;
     display: flex;
     align-items: center;
-    padding: 1em 0.6em;
+    width: 110px;
+    padding: 1em;
     font-size: 12px;
-    color: ${colors.gray3};
-    border: 1px solid ${colors.gray4};
+    color: ${colors.spring};
+    border: 1px solid ${colors.spring};
     border-radius: 4px;
     margin-right: 1em;
     text-align: center;
@@ -107,13 +106,13 @@ const Container = styled.div`
 
   input[type='file'] {
     display: none;
-    width: 100%;
   }
 
   button {
     border: none;
     appearance: none;
     background-color: transparent;
+    color: ${colors.spring};
   }
 `;
 
