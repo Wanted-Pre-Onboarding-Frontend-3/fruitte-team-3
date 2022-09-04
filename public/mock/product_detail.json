@@ -7,27 +7,19 @@
     "stock_count": 38,
     "review_count": 66,
     "isDiscount": true,
-    "images": ["https://cdn.imweb.me/thumbnail/20220610/7902f9ea75514.jpg"],
+    "images": ["https://cdn.imweb.me/thumbnail/20200715/236fbfcdd9cf2.jpg"],
     "description": {
       "title": "거창 오가네체리자두",
       "content": "완도 바람 맞고 자란 비타민 가득 유자를 청으로 만나보세요!\n환절기에 딱! 목감기에 딱!\n건강한 유자로 맛있게 담근 청년 파머의 유자청",
-      "images": "https://cdn.imweb.me/upload/S201907022014f7de8adf6/f571fbb10cd1c.jpg",
+      "images": "https://cdn.imweb.me/upload/S201907022014f7de8adf6/2f09c56725522.png",
       "origin": "전라남도 완도",
-      "deliveryType": ["택배", "항공"],
+      "deliveryType": ["택배"],
       "deliveryFee": "3500",
       "overFreeDeliveryFee": "50000",
       "itemOption": [
         {
-          "title": "유자청 480g 2병(960g)",
-          "price": 15200
-        },
-        {
-          "title": "유자청 1kg 1병",
-          "price": 13300
-        },
-        {
-          "title": "착즙유자 500ml",
-          "price": 18800
+          "title": "거창 오가네체리자두 3kg 한 상자",
+          "price": 29000
         }
       ]
     },
@@ -103,7 +95,7 @@
       "content": "완도 바람 맞고 자란 비타민 가득 유자를 청으로 만나보세요!\n환절기에 딱! 목감기에 딱!\n건강한 유자로 맛있게 담근 청년 파머의 유자청",
       "images": "https://cdn.imweb.me/upload/S201907022014f7de8adf6/f571fbb10cd1c.jpg",
       "origin": "전라남도 완도",
-      "deliveryType": ["택배", "항공"],
+      "deliveryType": ["항공"],
       "deliveryFee": "3500",
       "overFreeDeliveryFee": "50000",
       "itemOption": [
