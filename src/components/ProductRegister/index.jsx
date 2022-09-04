@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
@@ -20,18 +19,18 @@ const ProductRegister = () => {
   const newItemInfo = useRecoilValue(newItemInfoState);
   const [itemList, setItemList] = useRecoilState(itemListState);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     setItemCode(Math.floor(new Date().getTime() + Math.random()));
   }, []);
+
+  useEffect(() => {
+    setItemList([...itemList, newItemInfo]);
+  }, [setItemList, newItemInfo]);
 
   const handleAddNewItem = () => {
     if (window.confirm('상품을 등록하시겠습니까?')) {
       setItemList([...itemList, newItemInfo]);
       console.log(itemList);
-
-      navigate('/');
     }
   };
 

@@ -1,16 +1,12 @@
-import { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import { colors } from '../../styles/colors';
 import {
   newItemInfoState,
-  newOptDataState,
   itemCodeState,
   mainImgUrlState,
   detailImgUrlState,
-  itemOptTitleState,
-  itemOptPriceState,
 } from '../../utils/registerStore';
 
 const RegisterInput = ({ placeholder, inputData, name }) => {
@@ -18,29 +14,16 @@ const RegisterInput = ({ placeholder, inputData, name }) => {
   const itemCode = useRecoilValue(itemCodeState);
   const mainImage = useRecoilValue(mainImgUrlState);
   const detailImage = useRecoilValue(detailImgUrlState);
-  const [optTitle, setOptTitle] = useRecoilState(itemOptTitleState);
-  const [optPrice, setOptPrice] = useRecoilState(itemOptPriceState);
-  const [newOptData, setNewOptData] = useState({});
-  const [options, setOptions] = useState([]); // 최종 옵션 모음
 
   const handleInputData = (e) => {
     const key = e.target.name;
     const value = e.target.value;
-
-    if (key.includes('opt_name')) {
-      setOptTitle(value);
-    }
-
-    if (key.includes('opt_name')) {
-      setOptPrice(value);
-    }
 
     setNewItemInfo({
       ...newItemInfo,
       id: itemCode,
       mainImg: mainImage,
       detailImg: detailImage,
-      itemOption: options,
       [key]: value,
     });
   };

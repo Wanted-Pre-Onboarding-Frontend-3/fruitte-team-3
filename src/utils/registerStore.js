@@ -31,13 +31,3 @@ export const detailImgUrlState = atom({
   key: 'detailImgUrlState',
   default: [],
 });
-
-export const itemOptTitleState = atom({
-  key: 'itemOptTitleState',
-  default: '',
-});
-
-export const itemOptPriceState = atom({
-  key: 'itemOptPriceState',
-  default: 0,
-});
