@@ -5,7 +5,7 @@
 
 - 원티드 프리온보딩 프론트엔드 코스 6기 1-2 과제
 - Fruitte 기존 운영 서비스의 신규 페이지 제작
-- 기간 : 2022/09/02 ~ 2022/09/06
+- 기간 : 2022/09/02 ~ 2022/09/05
 
 <br>
 
@@ -33,8 +33,116 @@ $ yarn start
 | 서수민 | 팀원 / 건강상의 이유로 불참 |
 
 <br>
-
 ## 4. 디렉토리 구조
+
+```
+public                         
+├─ mock                        
+│  ├─ cart.json                
+│  ├─ product_detail.json      
+│  ├─ product_list_small.json  
+│  └─ product_manage.json      
+├─ favicon.ico                 
+├─ index.html                  
+├─ logo192.png                 
+├─ logo512.png                 
+├─ manifest.json               
+└─ robots.txt                  
+```
+
+<br>
+
+```
+src                                    
+├─ api                                 
+├─ assets                              
+│  └─ images                           
+│     ├─ fruitte-logo.png              
+│     ├─ symbol.png                    
+│     └─ user-default.png              
+├─ components                          
+│  ├─ BaseComponent                    
+│  │  ├─ DropDown                      
+│  │  │  └─ index.jsx                  
+│  │  ├─ slider                        
+│  │  │  ├─ index.jsx                  
+│  │  │  └─ slideItem.jsx              
+│  │  └─ TabBar                        
+│  │     ├─ hook.js                    
+│  │     └─ index.jsx                  
+│  ├─ Order                            
+│  │  ├─ OrderInput.jsx                
+│  │  ├─ OrderList.jsx                 
+│  │  ├─ OrderSelectBox.jsx            
+│  │  └─ SearchAddress.jsx             
+│  ├─ OrderHistory                     
+│  │  ├─ LeftMenu.jsx                  
+│  │  ├─ OrdererInfo.jsx               
+│  │  ├─ OrderItemLayout.jsx           
+│  │  ├─ OrderListHeader.jsx           
+│  │  └─ UserInfo.jsx                  
+│  ├─ ProductDetail                    
+│  │  └─ useProductDetailTabBar.jsx    
+│  ├─ ProductList                      
+│  │  ├─ BottomSection.jsx             
+│  │  ├─ Common.jsx                    
+│  │  ├─ InterviewItem.jsx             
+│  │  ├─ Pagination.jsx                
+│  │  ├─ ProductItem.jsx               
+│  │  ├─ Symbol.jsx                    
+│  │  ├─ Tags.jsx                      
+│  │  └─ TopSection.jsx                
+│  ├─ ProductRegister                  
+│  │  ├─ index.jsx                     
+│  │  ├─ RegisterFrame.jsx             
+│  │  ├─ RegisterImgButton.jsx         
+│  │  ├─ RegisterInput.jsx             
+│  │  ├─ RegisterOption.jsx            
+│  │  └─ RegisterOptionSet.jsx         
+│  ├─ SamplePage                       
+│  │  └─ sample-page-components-list   
+│  ├─ Gnb.jsx                          
+│  └─ Layout.jsx                       
+├─ mock                                
+│  ├─ interview_list.json              
+│  └─ product_list.json                
+├─ pages                               
+│  ├─ Order                            
+│  │  ├─ Order.jsx                     
+│  │  └─ OrderComplete.jsx             
+│  ├─ OrderHistory                     
+│  │  ├─ OrderHistory.jsx              
+│  │  └─ OrderHistoryDetail.jsx        
+│  ├─ ProductDetail                    
+│  │  └─ ProductDetail.jsx             
+│  ├─ ProductList                      
+│  │  └─ ProductList.jsx               
+│  ├─ productManage                    
+│  │  ├─ components                    
+│  │  │  └─ tableWithCheckbox.jsx      
+│  │  └─ index.jsx                     
+│  └─ home.jsx                         
+├─ router                              
+├─ src                                 
+│  └─ ProductDetail                    
+│     └─ ProductDetailContentInfo.jsx  
+├─ styles                              
+│  ├─ colors.js                        
+│  ├─ fonts.js                         
+│  └─ globalStyles.js                  
+├─ utils                               
+│  ├─ css.util.js                      
+│  ├─ fetch.util.js                    
+│  ├─ hooks.js                         
+│  ├─ orderStore.js                    
+│  └─ registerStore.js                 
+├─ App.js                              
+├─ App.test.js                         
+├─ index.js                            
+├─ reportWebVitals.js                  
+└─ setupTests.js                       
+```
+
 
 <br>
 
