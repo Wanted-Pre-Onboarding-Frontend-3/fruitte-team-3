@@ -9,7 +9,7 @@ export default function OrderItemLayout({ detail, data, children }) {
     <OrderItemWrapper>
       {!detail && (
         <OrderItemHeader>
-          <TextSubHeader>{data.order_time}</TextSubHeader>
+          <TextSubHeader>{data.orderTime}</TextSubHeader>
           <Link to={`/mypage/order/${data.orderNumber}`}>
             주문내역 상세보기
           </Link>

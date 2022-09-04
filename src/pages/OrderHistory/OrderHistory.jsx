@@ -1,24 +1,27 @@
+import { orderState } from '@utils/orderStore';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import LeftMenu from '../../components/OrderHistory/LeftMenu';
 import OrderItemLayout from '../../components/OrderHistory/OrderItemLayout';
 import OrderListHeader from '../../components/OrderHistory/OrderListHeader';
 import UserInfo from '../../components/OrderHistory/UserInfo';
-import order_list from '../../mock/oder_history.json';
 import { colors } from '../../styles/colors';
 import { fonts } from '../../styles/fonts';
 
 export default function OrderHistory() {
+  const orderList = useRecoilValue(orderState);
+
   return (
     <Background>
       <Container>
         <LeftMenu />
         <RightContainer>
-          <UserInfo />
+          <UserInfo name={orderList[0]?.orderer_name} />
           <div>
             <OrderListHeader title="주문 내역" />
             <OrderList>
-              {order_list.map((item, i) => (
+              {orderList?.map((item, i) => (
                 <OrderItemLayout
                   key={item.orderNumber}
                   data={item}
@@ -38,7 +41,9 @@ export default function OrderHistory() {
                     </dl>
                     <dl>
                       <dt>결제방법</dt>
-                      <dd>{item.pay_with}</dd>
+                      <dd>
+                        {item.payMethod === 0 ? '신용카드' : '무통장입금'}
+                      </dd>
                     </dl>
                     <dl>
                       <dt>결제금액</dt>
@@ -62,6 +67,7 @@ export default function OrderHistory() {
 }
 
 const Background = styled.div`
+  width: 100vw;
   background-color: ${colors.gray6};
   display: flex;
   justify-content: center;

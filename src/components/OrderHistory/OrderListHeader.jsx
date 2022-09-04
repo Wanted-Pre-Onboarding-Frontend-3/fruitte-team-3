@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 import { fonts } from '../../styles/fonts';
 
-export default function OrderListHeader({ title, orderNumber }) {
+export default function OrderListHeader({ title, subtitle }) {
   return (
     <Container>
       <Title>{title}</Title>
-      <OrderNumber>{orderNumber}</OrderNumber>
+      <OrderNumber>{subtitle}</OrderNumber>
     </Container>
   );
 }
