@@ -180,6 +180,14 @@ $ yarn start
 ![product-list-demo](https://user-images.githubusercontent.com/27720475/188330193-3d4cf9e0-077d-44b9-be5f-aca4429652f0.gif)
 - 스토어 상품목록 조회
 - 10개 단위 페이지네이션
+- pagination vs infinite scroll에 대한 고민
+	- infinite scroll은 유저가 직접 페이지를 넘기지 않고 상품리스트를 볼 수 있으므로 ux를 향상시킬 수 있다. 
+	- 그러나 웹은 앱과 다르게 단독으로 url 접근, 공유되는 상황이 고려되어야함(ex. 내가 공유하고싶은 상품이 포함된 리스트의 페이지, 상품 상세페이지 내에서의 리뷰 영역)
+	- 이와 같은 상황때문에 커머스 서비스는 상품 리스트페이지를 대부분 페이지네이션으로 구현
+- 상품 아이디에 대한 고민
+	- 상품 목록의 상품 아이디는 상품 상세페이지로 넘어갔을 때 /products => /product/${id} 형태로 넘어가게 되는데 id가 길어지면 url도 길어지게 됨
+	- 클라이언트 입장에서는 number와 같은 고유하면서도 sequential한 아이디가 장점으로 작용할 수 있음
+	- 서버측 컨벤션에 의해 id가 길어지거나 search param이 길어진다면 short url과 같은 솔루션 도입이 필요
 
 #### 상품목록 관리 페이지
 ![product-manage-demo](https://user-images.githubusercontent.com/27720475/188330036-60b462f6-ac2e-4ac3-a901-e6aa8f311c3b.gif)
