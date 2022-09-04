@@ -4,11 +4,11 @@ import userDefaultImg from '../../assets/images/user-default.png';
 import { colors } from '../../styles/colors';
 import { fonts } from '../../styles/fonts';
 
-export default function UserInfo() {
+export default function UserInfo({ name }) {
   return (
     <UserInfoWrapper>
       <UserImg defaultImg={userDefaultImg} />
-      <Text>홍길동 님 안녕하세요.</Text>
+      <Text>{name} 님 안녕하세요.</Text>
     </UserInfoWrapper>
   );
 }

@@ -27,7 +27,7 @@ const Order = () => {
     const OrderProductsList = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3000/data/cart.json',
+          'http://localhost:3000/mock/cart.json',
         );
         setOrderList(response.data);
         let cost = [];
@@ -112,7 +112,7 @@ const Order = () => {
       agree,
     };
     await setOrderState((prev) => [orderdata, ...prev]);
-    navigate('/order-complete');
+    navigate('/mypage/order');
   };
 
   return (

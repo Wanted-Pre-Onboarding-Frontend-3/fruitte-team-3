@@ -1,16 +1,20 @@
+import OrdererInfo from '@components/OrderHistory/OrdererInfo';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import LeftMenu from '../../components/OrderHistory/LeftMenu';
 import OrderItemLayout from '../../components/OrderHistory/OrderItemLayout';
 import OrderListHeader from '../../components/OrderHistory/OrderListHeader';
 import UserInfo from '../../components/OrderHistory/UserInfo';
-import order_list from '../../mock/oder_history.json';
 import { colors } from '../../styles/colors';
 import { fonts } from '../../styles/fonts';
+import { orderState } from '../../utils/orderStore';
 
 export default function OrderHistoryDetail() {
+  const orderList = useRecoilValue(orderState);
+
   const { id } = useParams();
   const [order, setOrder] = useState();
 
@@ -20,7 +24,8 @@ export default function OrderHistoryDetail() {
     }
   }
   useEffect(() => {
-    setOrder(order_list.find(isOrderNumber));
+    setOrder(orderList.find(isOrderNumber));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -28,9 +33,9 @@ export default function OrderHistoryDetail() {
       <Container>
         <LeftMenu />
         <RightContainer>
-          <UserInfo />
+          <UserInfo name={orderList[0].orderer_name} />
           <div>
-            <OrderListHeader title="주문 내역 상세" orderNumber={id} />
+            <OrderListHeader title="주문 내역 상세" subtitle={id} />
             <OrderList>
               {order?.products?.map((item, idx) => (
                 <OrderItemLayout
@@ -48,6 +53,7 @@ export default function OrderHistoryDetail() {
               ))}
             </OrderList>
           </div>
+          <OrdererInfo data={order} />
         </RightContainer>
       </Container>
     </Background>
@@ -55,6 +61,7 @@ export default function OrderHistoryDetail() {
 }
 
 const Background = styled.div`
+  width: 100vw;
   background-color: ${colors.gray6};
   display: flex;
   justify-content: center;
