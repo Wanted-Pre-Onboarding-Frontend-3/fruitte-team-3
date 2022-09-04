@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1",
+    "name": "국산 강원도 화천 생 아스파라거스 1kg 2kg",
+    "price": 29000,
+    "url": "https://cdn.imweb.me/thumbnail/20220622/420f289e15350.jpg",
+    "shipping_cost": 2500,
+    "options": {
+      "id": 1,
+      "title": "2kg",
+      "price": "29000",
+      "stock": 0,
+      "select": 1
+    },
+    "amount": 3,
+    "total_cost": 31500
+  },
+  {
+    "id": "2",
+    "name": "거창 오가네체리자두 3kg 한 상자",
+    "price": 39000,
+    "url": "https://cdn.imweb.me/thumbnail/20220714/7a7034b864bd3.jpeg",
+    "shipping_cost": 0,
+    "options": [],
+    "amount": 1,
+    "total_cost": 39000
+  }
+]
