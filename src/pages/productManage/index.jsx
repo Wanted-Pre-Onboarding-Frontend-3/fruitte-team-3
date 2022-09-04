@@ -4,11 +4,11 @@ import { BsTrashFill } from 'react-icons/bs';
 
 import TableWithCheckbox from './components/tableWithCheckbox';
 
+const tableConfig = {
+  colSizes: [6, 40, 30, 12, 12],
+  fieldNames: ['상품ID', '상품명', '노출 여부', '삭제하기'],
+};
 export default function ProductManage() {
-  const tableConfig = {
-    colSizes: [6, 40, 30, 12, 12],
-    fieldNames: ['상품ID', '상품명', '노출 여부', '삭제하기'],
-  };
   const [productList, setProductList] = useState([]);
 
   const getProductList = async () => {
