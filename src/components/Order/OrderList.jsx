@@ -11,7 +11,6 @@ const OrderList = (props) => {
             <span>{orderItem.product_name}</span>
             <span>{orderItem.stock}</span>
             <span>{orderItem.sale_price}</span>
-            <span>{orderItem.options.title}</span>
           </li>
         ))}
       </ul>

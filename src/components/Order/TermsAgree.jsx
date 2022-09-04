@@ -30,7 +30,7 @@ const TermsAgree = (props) => {
   };
 
   return (
-    <Wrapper>
+    <Container>
       <div>
         <input
           type="checkbox"
@@ -53,12 +53,12 @@ const TermsAgree = (props) => {
           </li>
         ))}
       </ul>
-    </Wrapper>
+    </Container>
   );
 };
 export default TermsAgree;
 
-const Wrapper = styled.div`
+const Container = styled.div`
   ul {
     list-style: none;
     padding-left: 0.5rem;
