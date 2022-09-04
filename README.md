@@ -113,7 +113,6 @@ $ yarn start
  ┃ ┣ 📜fonts.js
  ┃ ┗ 📜globalStyles.js
  ┣ 📂utils
- ┃ ┣ 📜.gitkeep
  ┃ ┣ 📜css.util.js
  ┃ ┣ 📜fetch.util.js
  ┃ ┣ 📜hooks.js
