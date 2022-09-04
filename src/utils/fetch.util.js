@@ -12,6 +12,7 @@ export const useQuery = ({ fetch, getId }) => {
       return item.product_id === getId;
     });
     setValue(itemData ?? resData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
