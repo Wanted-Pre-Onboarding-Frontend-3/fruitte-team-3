@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 import userDefaultImg from '../../assets/images/user-default.png';
-import colors from '../../styles/colors';
-import fonts from '../../styles/fonts';
+import { colors } from '../../styles/colors';
+import { fonts } from '../../styles/fonts';
 
 export default function UserInfo() {
   return (
