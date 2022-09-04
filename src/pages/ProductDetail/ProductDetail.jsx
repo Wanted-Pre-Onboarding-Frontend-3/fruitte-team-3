@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Slide from '../../components/BaseComponent/slider';
 import { TabBar } from '../../components/BaseComponent/TabBar';
 import { useTypedTabBar } from '../../components/BaseComponent/TabBar/hook';
+import { ProductDetailContentInfo } from '../../components/ProductDetail/ProductDetailContentInfo';
 import { ItemOption } from '../../components/ProductDetail/ProductDetailItemOption';
 import {
   PRODUCT_CONTENT_TAB,
@@ -15,7 +16,6 @@ import {
 } from '../../components/ProductDetail/useProductDetailTabBar';
 import { Text } from '../../components/ProductList/Common';
 import Tags from '../../components/ProductList/Tags';
-import { ProductDetailContentInfo } from '../../src/ProductDetail/ProductDetailContentInfo';
 import { colors } from '../../styles/colors';
 import { media } from '../../utils/css.util';
 import { useQuery } from '../../utils/fetch.util';
