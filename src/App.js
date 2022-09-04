@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import OrderComplete from './components/Order/OrderComplete';
-import Order from './pages/Order';
+import Order from './pages/Order/Order';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import ProductList from './pages/ProductList/ProductList';
 import ProductManage from './pages/productManage';

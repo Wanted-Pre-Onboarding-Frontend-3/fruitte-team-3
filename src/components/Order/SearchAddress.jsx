@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
+import styled from 'styled-components';
 
 const SearchAddress = (props) => {
   const CURRENT_URL =
