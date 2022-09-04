@@ -21,6 +21,7 @@ export default function OrderHistoryDetail() {
   }
   useEffect(() => {
     setOrder(order_list.find(isOrderNumber));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

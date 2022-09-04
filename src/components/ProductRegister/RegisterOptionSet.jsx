@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { TiDelete } from 'react-icons/ti';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';

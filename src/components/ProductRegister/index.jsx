@@ -8,7 +8,6 @@ import {
   newItemInfoState,
   itemCodeState,
 } from '../../utils/registerStore';
-import Gnb from '../Gnb';
 import RegisterFrame from './RegisterFrame';
 import RegisterImgButton from './RegisterImgButton';
 import RegisterInput from './RegisterInput';
@@ -19,10 +18,9 @@ const ProductRegister = () => {
   const newItemInfo = useRecoilValue(newItemInfoState);
   const [itemList, setItemList] = useRecoilState(itemListState);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     setItemCode(Math.floor(new Date().getTime() + Math.random()));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleAddNewItem = () => {

@@ -7,7 +7,7 @@ const OrderList = (props) => {
       <ul>
         {props.orderList.map((orderItem, key) => (
           <li key={key}>
-            <img src={orderItem.product_img} />
+            <img src={orderItem.product_img} alt={'product'} />
             <span>{orderItem.product_name}</span>
             <span>{orderItem.stock}</span>
             <span>{orderItem.sale_price}</span>
