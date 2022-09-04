@@ -33,6 +33,7 @@ $ yarn start
 | 서수민 | 팀원 / 건강상의 이유로 불참 |
 
 <br>
+
 ## 4. 디렉토리 구조
 
 ```
@@ -183,8 +184,7 @@ src
 - **상품 코드**는 랜덤으로 생성됩니다.
 - **이미지 첨부**는 메인 이미지의 경우 하나, 상세정보의 경우 여러 장을 올릴 수 있도록 하였습니다. 
 - **재사용성**을 위해 input, 이미지 첨부 버튼, 상품옵션 컴포넌트를 별도로 만들었습니다. 
-
-- 참고 파일: [src/components/ProductRegister/index.jsx]
+- [src/components/ProductRegister/index.jsx](src/components/ProductRegister/index.jsx)
 #### 상품 주문 내역확인 페이지
 #### 상품 목록조회 페이지
 #### 상품목록 관리 페이지
