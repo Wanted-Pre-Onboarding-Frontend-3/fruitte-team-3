@@ -76,7 +76,7 @@ const DropDownButton = styled.div`
 
 const DropDownItems = styled.div`
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
-  position: absolute;
+  position: ${({ isVisible }) => (isVisible ? 'unset' : 'absolute')};
   width: 100%;
   margin-top: 8px;
   display: flex;
@@ -93,6 +93,7 @@ const DropDownItem = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  min-height: 42px;
 
   &&:not(:first-child) {
     padding-top: 15px;
