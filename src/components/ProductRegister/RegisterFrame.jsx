@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 const RegisterFrame = ({ title, children }) => {
   return (
-    <FrameItem>
+    <Container>
       <ItemLeft>{title}</ItemLeft>
       <ItemRight>{children}</ItemRight>
-    </FrameItem>
+    </Container>
   );
 };
 
-const FrameItem = styled.div`
+const Container = styled.div`
   width: 40%;
   min-width: 500px;
   height: 100%;

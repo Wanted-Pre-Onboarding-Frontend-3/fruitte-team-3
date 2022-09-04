@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import logo from '../assets/fruitte-logo.png';
+import logo from '../assets/images/fruitte-logo.png';
 import { colors } from '../styles/colors';
 
 const Gnb = () => {
@@ -40,7 +40,6 @@ const Header = styled.header`
   width: -webkit-fill-available;
   background: ${colors.white};
   z-index: 50;
-
   border-bottom: 1px solid ${colors.gray1};
 
   ul {
