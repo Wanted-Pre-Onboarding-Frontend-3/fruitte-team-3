@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
@@ -21,7 +22,6 @@ const ProductRegister = () => {
 
   useEffect(() => {
     setItemCode(Math.floor(new Date().getTime() + Math.random()));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
