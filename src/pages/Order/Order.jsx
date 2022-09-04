@@ -19,7 +19,9 @@ const Order = () => {
 
   const [orderList, setOrderList] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
-  const orderNumber = Math.floor(Math.random() * 100) + 1;
+  const orderNumber = Math.floor(Math.random() * 10000000) + 1;
+  const orderTime = new Date().toLocaleString();
+  console.log(orderTime);
 
   useEffect(() => {
     const OrderProductsList = async () => {
@@ -97,6 +99,8 @@ const Order = () => {
   const handleOrderConfirm = async () => {
     const orderdata = {
       orderNumber,
+      orderTime,
+      products: orderList,
       totalCost,
       orderer_name: ordererName,
       orderer_phone: ordererPhone,
@@ -223,7 +227,7 @@ const Order = () => {
       <TermsAgree name={agree} onChange={hadleChange} />
       <BtnWrapper>
         <button type="button" onClick={handleOrderConfirm}>
-          결제하기
+          {totalCost}원 결제하기
         </button>
       </BtnWrapper>
     </Container>
@@ -233,8 +237,7 @@ const Order = () => {
 export default Order;
 
 const Container = styled.div`
-  max-width: 1280px;
-  margin: 0 auto;
+  // margin: 0 auto;
 
   h1 {
     ${fonts.H1};
@@ -266,6 +269,7 @@ const BtnWrapper = styled.div`
     color: ${colors.white};
     background: ${colors.spring};
     padding: 1rem 2rem;
+    border-radius: 0.4rem;
   }
 
   button:hover {

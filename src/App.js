@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from './components/Layout';
-import OrderComplete from './components/Order/OrderComplete';
 import ProductRegister from './components/ProductRegister';
 import Home from './pages/home';
 import Order from './pages/Order/Order';
+import OrderComplete from './pages/Order/OrderComplete';
 import OrderHistory from './pages/OrderHistory/OrderHistory';
 import OrderHistoryDetail from './pages/OrderHistory/OrderHistoryDetail';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
@@ -24,7 +24,7 @@ function App() {
           <Route path="/order" element={<Order />} />
           <Route path="/order-complete" element={<OrderComplete />} />
           <Route path="/mypage/order/:id" element={<OrderHistoryDetail />} />
-          <Route path="/mypage/order" element={<OrderHistory />} />                  
+          <Route path="/mypage/order" element={<OrderHistory />} />
         </Route>
       </Routes>
     </BrowserRouter>
