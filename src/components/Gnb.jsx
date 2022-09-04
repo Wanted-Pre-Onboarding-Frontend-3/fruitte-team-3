@@ -15,15 +15,15 @@ const Gnb = () => {
 
       <ul>
         <li>
-          <Link to="/">Fruit Store</Link>
+          <Link to="/fruitstore">Fruit Store</Link>
         </li>
 
         <li>
-          <Link to="/">Admin</Link>
+          <Link to="/admin">Admin</Link>
         </li>
 
         <li>
-          <Link to="/">My Cart</Link>
+          <Link to="/mypage">My Cart</Link>
         </li>
       </ul>
     </Header>
