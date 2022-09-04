@@ -76,4 +76,5 @@ const SlideWrap = styled.div`
 const SlideInner = styled.div`
   width: 100%;
   display: flex;
+  position: relative;
 `;

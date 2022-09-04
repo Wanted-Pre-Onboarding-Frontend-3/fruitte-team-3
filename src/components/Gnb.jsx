@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import logo from '../assets/fruitte-logo.png';
-import colors from '../styles/colors';
+import { colors } from '../styles/colors';
 
 const Gnb = () => {
   return (
@@ -15,15 +15,15 @@ const Gnb = () => {
 
       <ul>
         <li>
-          <Link to="/">Fruit Store</Link>
+          <Link to="/fruitstore">Fruit Store</Link>
         </li>
 
         <li>
-          <Link to="/">Admin</Link>
+          <Link to="/admin">Admin</Link>
         </li>
 
         <li>
-          <Link to="/">My Cart</Link>
+          <Link to="/mypage">My Cart</Link>
         </li>
       </ul>
     </Header>
@@ -31,12 +31,15 @@ const Gnb = () => {
 };
 
 const Header = styled.header`
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   padding: 1rem;
   display: flex;
+  width: -webkit-fill-available;
+  background: ${colors.white};
+  z-index: 50;
 
   border-bottom: 1px solid ${colors.gray1};
 
