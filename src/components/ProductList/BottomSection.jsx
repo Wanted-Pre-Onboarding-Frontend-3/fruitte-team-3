@@ -43,7 +43,7 @@ export default function BottomSection() {
         {interviewList.map((interview) => (
           <Link
             key={interview.id}
-            target={interview.is_external && '_blank'}
+            target={interview.is_external ? '_blank' : undefined}
             to={interview.url}
           >
             <InterviewItem data={interview} />
