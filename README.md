@@ -189,6 +189,11 @@ src
 - **재사용성**을 위해 input, 이미지 첨부 버튼, 상품옵션 컴포넌트를 별도로 만들었습니다. 
 - [src/components/ProductRegister/index.jsx](src/components/ProductRegister)
 #### 상품 주문 내역확인 페이지
+![test](https://user-images.githubusercontent.com/78922001/188329364-2320274e-e1e2-4fce-a0c6-2618af24c7a1.png)
+
+- 스토어 상품 주문 내역(주문 번호, 상품명, 주문 수량, 주문 옵션)을 확인할 수 있는 페이지를 구현하였습니다.
+- 주문 번호를 통해, 배송 정보를 포함한 주문 상세정보를 뽑아 낼 수 있게끔 구현했습니다.
+
 #### 상품 목록조회 페이지
 #### 상품목록 관리 페이지
 #### 상품 주문 페이지
