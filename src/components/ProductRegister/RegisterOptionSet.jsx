@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { TiDelete } from 'react-icons/ti';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
@@ -17,11 +18,12 @@ const RegisterOptionSet = ({ id }) => {
     <Container>
       <Wrapper>
         <DescInput>
-          <RegisterInput placeholder={'옵션명'} name={'opt_name'} />
+          <RegisterInput placeholder={'옵션명'} name={`opt_name_${id}`} />
         </DescInput>
 
         <PriceInput>
-          <RegisterInput placeholder={'상품 판매가'} name={'opt_price'} />원
+          <RegisterInput placeholder={'상품 판매가'} name={`opt_price_${id}`} />
+          원
         </PriceInput>
       </Wrapper>
 

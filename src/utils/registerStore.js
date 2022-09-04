@@ -2,8 +2,6 @@ import { atom } from 'recoil';
 
 import product_list from '../mock/product_list';
 
-// newItemInfo 객체로 받이 기존 데이터에 추가하기 위한 값 : 옵션 설정값
-
 export const itemListState = atom({
   key: 'itemListState',
   default: product_list,
