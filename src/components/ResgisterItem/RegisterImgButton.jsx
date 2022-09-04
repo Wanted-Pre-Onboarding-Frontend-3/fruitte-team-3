@@ -1,31 +1,44 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import colors from '../../styles/colors';
+import { colors } from '../../styles/colors';
 
 const RegisterImgButton = ({ imgId, isMultiple }) => {
   const [imgFile, setImgFile] = useState('');
+  const [showImgs, setShowImgs] = useState([]);
 
   const handleAttachedImg = (e) => {
     const file = e.target.files[0];
 
-    console.log(isMultiple);
-    if (isMultiple) {
-      setImgFile([...imgFile, file.name]);
-    } else {
+    if (!isMultiple) {
       setImgFile(file.name);
+      return;
+    } else {
+      setImgFile([...imgFile, file.name]);
+
+      const imgLists = e.target.files;
+      let imgUrlLists = [...showImgs];
+
+      for (let i = 0; i < imgLists.length; i++) {
+        const currentImgUrl = URL.createObjectURL(imgLists[i]);
+        imgUrlLists.push(currentImgUrl);
+      }
+
+      if (imgUrlLists.length > 5) {
+        imgUrlLists = imgUrlLists.slice(0, 5);
+      }
+      setShowImgs(imgUrlLists);
     }
   };
 
-  const handleRemoveFile = () => {
-    alert('remove');
+  const handleRemoveFile = (id) => {
+    setShowImgs(showImgs.filter((_, index) => index !== id));
     setImgFile('');
   };
 
   return (
-    <ButtonContainer>
+    <Container>
       <label htmlFor={imgId}>이미지 첨부</label>
-
       <input
         type="file"
         id={imgId}
@@ -34,18 +47,24 @@ const RegisterImgButton = ({ imgId, isMultiple }) => {
         multiple={isMultiple}
       />
 
-      {/* TODO: 여러개의 첨부파일 등록시, 각각 삭제버튼 및 미리보기 구현*/}
-      {imgFile && (
-        <span>
+      {!isMultiple && imgFile && (
+        <div>
           <p>{imgFile}</p>
-          <button onClick={handleRemoveFile}>X</button>
-        </span>
+          <button onClick={() => handleRemoveFile(imgId)}>X</button>
+        </div>
       )}
-    </ButtonContainer>
+
+      {showImgs.map((image, id) => (
+        <div key={id}>
+          <img src={image} alt={`${image}-${id}`} />
+          <button onClick={() => handleRemoveFile(id)}>X</button>
+        </div>
+      ))}
+    </Container>
   );
 };
 
-const ButtonContainer = styled.div`
+const Container = styled.div`
   width: 100%;
 
   label {
