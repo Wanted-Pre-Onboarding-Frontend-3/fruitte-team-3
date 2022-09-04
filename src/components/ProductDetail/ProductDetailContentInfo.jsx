@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
-import { DropDown } from '../../components/BaseComponent/DropDown';
-import { Text } from '../../components/ProductList/Common';
 import { colors } from '../../styles/colors';
 import { PlainButton } from '../../utils/css.util';
 import { purchase } from '../../utils/purchaseStore';
+import { DropDown } from '../BaseComponent/DropDown';
+import { Text } from '../ProductList/Common';
 
 export function ProductDetailContentInfo(props) {
   const { contentInfo, setOption } = props;
