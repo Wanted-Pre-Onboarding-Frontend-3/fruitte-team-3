@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import colors from '../../styles/colors';
-import fonts from '../../styles/fonts';
+import { colors } from '../../styles/colors';
+import { fonts } from '../../styles/fonts';
 
 export default function OrderItemLayout({ detail, data, children }) {
   return (

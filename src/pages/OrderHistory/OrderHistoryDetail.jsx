@@ -7,8 +7,8 @@ import OrderItemLayout from '../../components/OrderHistory/OrderItemLayout';
 import OrderListHeader from '../../components/OrderHistory/OrderListHeader';
 import UserInfo from '../../components/OrderHistory/UserInfo';
 import order_list from '../../mock/oder_history.json';
-import colors from '../../styles/colors';
-import fonts from '../../styles/fonts';
+import { colors } from '../../styles/colors';
+import { fonts } from '../../styles/fonts';
 
 export default function OrderHistoryDetail() {
   const { id } = useParams();
