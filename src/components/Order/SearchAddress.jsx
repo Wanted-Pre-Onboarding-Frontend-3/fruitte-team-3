@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
-import styled from 'styled-components';
 
 import { colors } from '../../styles/colors';
 import { fonts } from '../../styles/fonts';

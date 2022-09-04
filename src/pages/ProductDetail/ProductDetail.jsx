@@ -61,7 +61,7 @@ function ProductDetail() {
                 </Text>
               </Link>
             </FirstItem>
-            <IconWrap>></IconWrap>
+            <IconWrap>{'>'}</IconWrap>
             <SecondItem>
               <Link to={'/fruitstore'}>
                 <Text color={colors.gray2} fontWeight={600} fontSize={16}>

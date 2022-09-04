@@ -21,6 +21,7 @@ const ProductRegister = () => {
 
   useEffect(() => {
     setItemCode(Math.floor(new Date().getTime() + Math.random()));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
