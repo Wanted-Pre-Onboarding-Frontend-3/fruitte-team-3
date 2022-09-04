@@ -1,10 +1,10 @@
-import OrdererInfo from '@components/OrderHistory/OrdererInfo';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import LeftMenu from '../../components/OrderHistory/LeftMenu';
+import OrdererInfo from '../../components/OrderHistory/OrdererInfo';
 import OrderItemLayout from '../../components/OrderHistory/OrderItemLayout';
 import OrderListHeader from '../../components/OrderHistory/OrderListHeader';
 import UserInfo from '../../components/OrderHistory/UserInfo';
