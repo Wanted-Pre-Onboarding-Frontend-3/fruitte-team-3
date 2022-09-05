@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
@@ -15,6 +16,8 @@ export function ProductDetailContentInfo(props) {
   const [dropdownValue, setDropdownValue] = useState('');
 
   const purchaseItem = useRecoilValue(purchase);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!contentInfo) return;
@@ -47,6 +50,7 @@ export function ProductDetailContentInfo(props) {
         purchaseItem,
       )}를 구매하시겠습니까?\n 구매페이지로 이동합니다.`,
     );
+    navigate('/order');
   };
   return (
     <InfoWrap>

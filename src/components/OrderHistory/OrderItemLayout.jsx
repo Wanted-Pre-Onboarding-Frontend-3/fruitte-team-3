@@ -37,6 +37,10 @@ const OrderItemHeader = styled.div`
   align-items: center;
   padding: 8px 0 13px;
   border-bottom: 1px solid ${colors.gray4};
+
+  & a {
+    color: ${colors.summer};
+  }
 `;
 
 const OrderItemCotents = styled.div`
