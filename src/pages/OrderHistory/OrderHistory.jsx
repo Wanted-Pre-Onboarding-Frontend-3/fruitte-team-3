@@ -1,4 +1,3 @@
-import { orderState } from '@utils/orderStore';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
@@ -8,6 +7,7 @@ import OrderListHeader from '../../components/OrderHistory/OrderListHeader';
 import UserInfo from '../../components/OrderHistory/UserInfo';
 import { colors } from '../../styles/colors';
 import { fonts } from '../../styles/fonts';
+import { orderState } from '../../utils/orderStore';
 
 export default function OrderHistory() {
   const orderList = useRecoilValue(orderState);
